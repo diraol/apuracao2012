@@ -1,0 +1,16 @@
+[
+{"title":"PMDB","nextlevel":"prefeitos_pmdb_estados","dados2008":[1193,1205,0],"dados2012":[1020,1036],"valorFinal2008":[1201]},
+{"title":"PSDB","nextlevel":"prefeitos_psdb_estados","dados2008":[787,797,0],"dados2012":[692,709],"valorFinal2008":[791]},
+{"title":"PT","nextlevel":"prefeitos_pt_estados","dados2008":[550,565,0],"dados2012":[627,649],"valorFinal2008":[558]},
+{"title":"PP","nextlevel":"prefeitos_pp_estados","dados2008":[549,552,0],"dados2012":[466,470],"valorFinal2008":[551]},
+{"title":"DEM","nextlevel":"prefeitos_dem_estados","dados2008":[495,497,0],"dados2012":[274,276],"valorFinal2008":[496]},
+{"title":"PTB","nextlevel":"prefeitos_ptb_estados","dados2008":[410,414,0],"dados2012":[295,297],"valorFinal2008":[413]},
+{"title":"PR","nextlevel":"prefeitos_pr_estados","dados2008":[384,386,0],"dados2012":[273,276],"valorFinal2008":[385]},
+{"title":"PDT","nextlevel":"prefeitos_pdt_estados","dados2008":[351,353,0],"dados2012":[309,317],"valorFinal2008":[352]},
+{"title":"PSB","nextlevel":"prefeitos_psb_estados","dados2008":[308,314,0],"dados2012":[433,439],"valorFinal2008":[310]},
+{"title":"PSD","nextlevel":"prefeitos_psd_estados","dados2008":[0,0,0],"dados2012":[493,498],"valorFinal2008":[0]},
+{"title":"PPS","nextlevel":"prefeitos_pps_estados","dados2008":[129,131,0],"dados2012":[120,123],"valorFinal2008":[129]},
+{"title":"PV","nextlevel":"prefeitos_pv_estados","dados2008":[75,76,0],"dados2012":[96,98],"valorFinal2008":[75]},
+{"title":"PSC","nextlevel":"prefeitos_psc_estados","dados2008":[57,57,0],"dados2012":[83,84],"valorFinal2008":[57]},
+{"title":"Outros","nextlevel":"prefeitos_partidos_outros","dados2008":[238,239,0],"dados2012":[240,245],"valorFinal2008":[238]}
+]
