@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8"/>
+	    <meta name="robots" content="index">
+	    <meta name="creator" content="Estadão.com.br">
+	    <meta name="creator" content="Estadão Dados">
+	    <meta name="creator" content="José Roberto Toledo">
+	    <meta name="creator" content="Daniel Bramatti"> 
+	    <meta name="creator" content="Amanda Rossi">
+	    <meta name="creator" content="Diego Rabatone (DiRaOL)"> 
+	    <meta property="og:site_name" content="Estadão Dados"/>
+	    <meta property="og:locale" content="pt_BR"/>
+	    <!-- meta tags específicas de cada projeto -->
+	    <meta name="author" content="DiRaOL"> <!-- A pessoa responsável pelo desenvolvimento deste arquivo -->
+	    <meta name="DC.creator" content="DiRaOL" /> <!-- Desenvolvedor da página -->
+	    <meta name="application-name" content="Apuração"> <!-- O nome desta aplicação -->
+	    <meta name="description" content="Ferramenta para visualização de dados de apuração eleitoral."> <!-- Descrição curta e precisa do conteúdo desta página -->
+	    <meta name="keywords" content="apuração ao vivo"> <!-- Palavras reletantes relativas ao conteúdo dessa página. Em formato texto e separadas por vírgula. -->
+	    <meta property="og:image" content="http://estadaodados.com/base/images/logo_estadao_dados.png"/> <!-- imagem que aparecerá no facebook quando o site for compartilhado -->
+	    <link rel="image_src" href="http://estadaodados.com/base/images/logo_estadao_dados.png"/> <!-- Outra forma de definir a imagem mostrada quando do compartilhamento da página -->
+	    <title>Estadão Dados: Apuração ao Vivo</title>
+	    <meta property="og:title" content="Estadão Dados: Apuração ao vivo"/>
+	    <meta property="og:url" content="http://estadaodados.com/html/apuracao/"/> <!-- ex: http://estadaodados.com/html/coligacoes/ -->
+        
+        <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="js/d3.v2.min.js"></script>
+        <script type="text/javascript" src="js/nv.d3.js"></script>
+        <script type="text/javascript" src="js/jquery.zoom.min.js"></script>
+        <link rel="stylesheet" href="css/apuracao.css" />
+    </head>
+  <body>
+        <section id="estadaoDadosMainFrame">
+            <div id="noIeError" style="position:absolute;">
+                <div id="alertar" onClick="esconderAlerta()"></div>
+                <div id="titulo"><span id="origemDados">Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008</span></div>
+                <span class='zoom' id="legendaDeCores">
+                    <img width='350' height='60' src="imgs/legenda.png"/>
+                    <p></p>
+                </span>
+                <nav id="estadaoDadosAbas">
+                    <ul>
+                        <li><a class="selected" href="#" id="prefeitos">Número de prefeitos</a></li>
+                        <li><a href="#" id="votos">Votos recebidos para prefeito</a></li>
+                        <li><a href="#" id="eleitorado">Eleitorado a governar</a></li>
+                    </ul>
+                </nav>
+                <div id="letreiro"></div>
+                <div class="conteudo"><svg id="svgEstadaoDados"></svg></div>
+            </div>
+            <div id="erroIE" style="position: absolute; top:0; left:0; width: 958px; height: 510px; display:none;"><img src="imgs/erroIE.png"/></div>
+        </section>
+        <script type="text/javascript" src="js/apuracao.js"></script>
+        <footer><b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados</a></footer>
+        <a href="https://github.com/estadaoDados/apuracao2012"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+  </body>
+</html>
