@@ -1,0 +1,15 @@
+[
+  {"title":"ES","nextlevel":"votos_partidos",                       "dados2008":[104045,104045],"dados2012":[0,0],"valorFinal2008":[104045]},
+  {"title":"PI","nextlevel":"votos_partidos",                       "dados2008":[48726 ,48726 ],"dados2012":[0,0],"valorFinal2008":[48726 ]},
+  {"title":"RN","nextlevel":"votos_partidos",                       "dados2008":[63832 ,63832 ],"dados2012":[0,0],"valorFinal2008":[63832 ]},
+  {"title":"MT","nextlevel":"votos_partidos",                       "dados2008":[48788 ,48788 ],"dados2012":[0,0],"valorFinal2008":[48788 ]},
+  {"title":"AL","nextlevel":"votos_partidos",			"dados2008":[4472  ,4472  ],"dados2012":[0,0],"valorFinal2008":[4472  ]},
+  {"title":"AM","nextlevel":"votos_partidos",			"dados2008":[26401 ,26401 ],"dados2012":[0,0],"valorFinal2008":[26401 ]},
+  {"title":"MS","nextlevel":"votos_partidos",			"dados2008":[18030 ,18030 ],"dados2012":[0,0],"valorFinal2008":[18030 ]},
+  {"title":"SE","nextlevel":"votos_partidos",			"dados2008":[4355  ,4355  ],"dados2012":[0,0],"valorFinal2008":[4355  ]},
+  {"title":"RO","nextlevel":"votos_partidos",			"dados2008":[10823 ,10823 ],"dados2012":[0,0],"valorFinal2008":[10823 ]},
+  {"title":"TO","nextlevel":"votos_partidos",			"dados2008":[11615 ,11615 ],"dados2012":[0,0],"valorFinal2008":[11615 ]},
+  {"title":"AC","nextlevel":"votos_partidos",			"dados2008":[2609  ,2609  ],"dados2012":[0,0],"valorFinal2008":[2609  ]},
+  {"title":"AP","nextlevel":"votos_partidos",			"dados2008":[1132  ,1132  ],"dados2012":[0,0],"valorFinal2008":[1132  ]},
+  {"title":"RR","nextlevel":"votos_partidos",			"dados2008":[2854  ,2854  ],"dados2012":[0,0],"valorFinal2008":[2854  ]}
+]

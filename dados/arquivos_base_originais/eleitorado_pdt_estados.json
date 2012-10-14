@@ -1,0 +1,16 @@
+[
+  {"title":"SP","nextlevel":"eleitorado_partidos",                       "dados2008":[1702843,1702843],"dados2012":[0,0],"valorFinal2008":[1702843]},
+  {"title":"MG","nextlevel":"eleitorado_partidos",                       "dados2008":[576429 ,576429 ],"dados2012":[0,0],"valorFinal2008":[576429 ]},
+  {"title":"RJ","nextlevel":"eleitorado_partidos",                       "dados2008":[1045664,1368503],"dados2012":[0,0],"valorFinal2008":[1045664]},
+  {"title":"BA","nextlevel":"eleitorado_partidos",                       "dados2008":[79500  ,79500  ],"dados2012":[0,0],"valorFinal2008":[79500  ]},
+  {"title":"RS","nextlevel":"eleitorado_partidos",                       "dados2008":[869522 ,869522 ],"dados2012":[0,0],"valorFinal2008":[869522 ]},
+  {"title":"PR","nextlevel":"eleitorado_partidos",                       "dados2008":[841900 ,841900 ],"dados2012":[0,0],"valorFinal2008":[841900 ]},
+  {"title":"PE","nextlevel":"eleitorado_partidos",                       "dados2008":[470015 ,470015 ],"dados2012":[0,0],"valorFinal2008":[470015 ]},
+  {"title":"CE","nextlevel":"eleitorado_partidos",                       "dados2008":[23055  ,23055  ],"dados2012":[0,0],"valorFinal2008":[23055  ]},
+  {"title":"PA","nextlevel":"eleitorado_partidos",                       "dados2008":[113454 ,113454 ],"dados2012":[0,0],"valorFinal2008":[113454 ]},
+  {"title":"SC","nextlevel":"eleitorado_partidos",                       "dados2008":[25094  ,25094  ],"dados2012":[0,0],"valorFinal2008":[25094  ]},
+  {"title":"MA","nextlevel":"eleitorado_partidos",                       "dados2008":[1093883,1093883],"dados2012":[0,0],"valorFinal2008":[1093883]},
+  {"title":"GO","nextlevel":"eleitorado_partidos",                       "dados2008":[3449   ,3449   ],"dados2012":[0,0],"valorFinal2008":[3449   ]},
+  {"title":"PB","nextlevel":"eleitorado_partidos",                       "dados2008":[59319  ,59319  ],"dados2012":[0,0],"valorFinal2008":[59319  ]},
+  {"title":"outros","nextlevel":"eleitorado_pdt_estados_outros",         	"dados2008":[1076588,1295829],"dados2012":[0,0],"valorFinal2008":[1295829]}
+]

@@ -1,0 +1,16 @@
+[
+  {"title":"SP","nextlevel":"votos_partidos",                       "dados2008":[793783,793783 ],"dados2012":[0,0],"valorFinal2008":[793783 ]},
+  {"title":"MG","nextlevel":"votos_partidos",                       "dados2008":[407674,407674 ],"dados2012":[0,0],"valorFinal2008":[407674 ]},
+  {"title":"RJ","nextlevel":"votos_partidos",                       "dados2008":[894598,5473963],"dados2012":[0,0],"valorFinal2008":[2535568]},
+  {"title":"BA","nextlevel":"votos_partidos",                       "dados2008":[60713 ,60713  ],"dados2012":[0,0],"valorFinal2008":[60713  ]},
+  {"title":"RS","nextlevel":"votos_partidos",                       "dados2008":[8470  ,8470   ],"dados2012":[0,0],"valorFinal2008":[8470   ]},
+  {"title":"PR","nextlevel":"votos_partidos",                       "dados2008":[94780 ,94780  ],"dados2012":[0,0],"valorFinal2008":[94780  ]},
+  {"title":"PE","nextlevel":"votos_partidos",                       "dados2008":[3719  ,3719   ],"dados2012":[0,0],"valorFinal2008":[3719   ]},
+  {"title":"CE","nextlevel":"votos_partidos",                       "dados2008":[27704 ,27704  ],"dados2012":[0,0],"valorFinal2008":[27704  ]},
+  {"title":"PA","nextlevel":"votos_partidos",                       "dados2008":[45503 ,45503  ],"dados2012":[0,0],"valorFinal2008":[45503  ]},
+  {"title":"SC","nextlevel":"votos_partidos",                       "dados2008":[22584 ,22584  ],"dados2012":[0,0],"valorFinal2008":[22584  ]},
+  {"title":"MA","nextlevel":"votos_partidos",                       "dados2008":[205001,205001 ],"dados2012":[0,0],"valorFinal2008":[205001 ]},
+  {"title":"GO","nextlevel":"votos_partidos",                       "dados2008":[3673  ,3673   ],"dados2012":[0,0],"valorFinal2008":[3673   ]},
+  {"title":"PB","nextlevel":"votos_partidos",                       "dados2008":[999   ,999    ],"dados2012":[0,0],"valorFinal2008":[999    ]},
+  {"title":"outros","nextlevel":"votos_pv_estados_outros",         	"dados2008":[405808,405808],"dados2012":[0,0],"valorFinal2008":[405808]}
+]

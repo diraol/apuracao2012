@@ -1,0 +1,16 @@
+[
+  {"title":"SP","nextlevel":"eleitorado_partidos",                       "dados2008":[29075,29075],"dados2012":[0,0],"valorFinal2008":[29075]},
+  {"title":"MG","nextlevel":"eleitorado_partidos",                       "dados2008":[17592,17592],"dados2012":[0,0],"valorFinal2008":[17592]},
+  {"title":"RJ","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"BA","nextlevel":"eleitorado_partidos",                       "dados2008":[30468,30468],"dados2012":[0,0],"valorFinal2008":[30468]},
+  {"title":"RS","nextlevel":"eleitorado_partidos",                       "dados2008":[6825 ,6825 ],"dados2012":[0,0],"valorFinal2008":[6825 ]},
+  {"title":"PR","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"PE","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"CE","nextlevel":"eleitorado_partidos",                       "dados2008":[15989,15989],"dados2012":[0,0],"valorFinal2008":[15989]},
+  {"title":"PA","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"SC","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"MA","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"GO","nextlevel":"eleitorado_partidos",                       "dados2008":[0    ,0    ],"dados2012":[0,0],"valorFinal2008":[0    ]},
+  {"title":"PB","nextlevel":"eleitorado_partidos",                       "dados2008":[18602,18602],"dados2012":[0,0],"valorFinal2008":[18602]},
+  {"title":"outros","nextlevel":"eleitorado_phs_estados_outros",         	"dados2008":[33642,33642],"dados2012":[0,0],"valorFinal2008":[33642]}
+]
