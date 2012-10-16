@@ -5,7 +5,7 @@
     position:absolute; 
     top:0;
     right:0;
-    background:url(imgs/icon.png);
+    background:url(../imgs/icon.png);
 }
 .zoom {
     display:inline-block;
