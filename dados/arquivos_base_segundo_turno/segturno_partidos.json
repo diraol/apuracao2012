@@ -1,0 +1,16 @@
+[
+    {"title":"PT","nextlevel":"segturno_pt_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PSDB","nextlevel":"segturno_psdb_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PMDB","nextlevel":"segturno_pmdb_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PDT","nextlevel":"segturno_pdt_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PSB","nextlevel":"segturno_psb_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PSD","nextlevel":"segturno_psd_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PC","nextlevel":"segturno_pc_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PP","nextlevel":"segturno_pp_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PPS","nextlevel":"segturno_pps_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PR","nextlevel":"segturno_pr_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"DEM","nextlevel":"segturno_dem_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PTB","nextlevel":"segturno_ptb_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"PV","nextlevel":"segturno_pv_estados","dados2008":[],"dados2012":[123],"valorFinal2008":[]},
+    {"title":"Outros","nextlevel":"segturno_partidos_outros","dados2008":[],"dados2012":[123],"valorFinal2008":[]}
+]
