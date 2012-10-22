@@ -62,8 +62,8 @@ function geraGrafico(nomeJson) {
                 if (!d3.select("#retornaBackground")[0][0]) {
                     svg.append("rect")
                         .attr("id", "retornaBackground")
-                        .attr("alt", "Clique na barra para ver um gráfico mais detalhado,<br/>em 'outros' para ver mais dados<br/>ou no fundo do gráfico para voltar à visualização anterior.")
-                        .attr("title", "Clique na barra para ver um gráfico mais detalhado,<br/>em 'outros' para ver mais dados<br/>ou no fundo do gráfico para voltar à visualização anterior.")
+                        .attr("alt", "Clique na barra para ver um gráfico mais detalhado, em 'outros' para ver mais dados ou no fundo do gráfico para voltar à visualização anterior.")
+                        .attr("title", "Clique na barra para ver um gráfico mais detalhado, em 'outros' para ver mais dados ou no fundo do gráfico para voltar à visualização anterior.")
                         .attr("class", "retornaBackground")
                         .attr("width", width)//width - margin.left - margin.right)
                         .attr("height", height)//height - margin.top - margin.bottom)
