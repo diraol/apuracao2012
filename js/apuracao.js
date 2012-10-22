@@ -14,7 +14,7 @@ var duracao = 1250,
     pilhaJson = [],
     erroEncontrado = false,
     mensagemErro = "",
-    projecao = "prefeitos",
+    projecao = "segturno",
     baseEscala = 0
 
 var Browser = {
@@ -98,6 +98,8 @@ function geraGrafico(nomeJson) {
 
 //Função que faz transição entre dois gráficos
 function novoGrafico(novoJson){
+    nv.log("novoGrafico: ")
+    nv.log("      " + novoJson)
     if (!erroEncontrado){
         
         if (projecao=="votos") {
@@ -112,12 +114,18 @@ function novoGrafico(novoJson){
             } else {
                 $("#origemDados").text('Veja quantos eleitores o ' + novoJson.split("_")[1].toUpperCase() + ' vai governar pós-2012 e compare a 2008')
             } 
+        } else if (projecao=="segturno") {
+           if (novoJson.indexOf("partidos") != -1) {
+                $("#origemDados").text("Veja quantos prefeitos cada partido elegeu no segundo turno em 2012")
+            } else {
+                $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012')
+            } 
         } else {
             if (novoJson.indexOf("partidos") != -1) {
                 $("#origemDados").text("Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008")
             } else {
                 $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012 e compare com 2008')
-            }        
+            }
         }
         //Efeito de redução do gráfico atual
         d3.selectAll(".nv-measure")
@@ -136,7 +144,8 @@ function novoGrafico(novoJson){
             .transition()
                 .duration(duracao)
                 .attr("height",0)
-        
+        nv.log(jsonAtual) 
+        nv.log("#"+jsonAtual)
         //Reduzindo e removendo o gráfico atual e adicionando novo gráfico ao final da transição
         d3.select("#"+jsonAtual)
             .transition()
@@ -144,6 +153,7 @@ function novoGrafico(novoJson){
                 .style("opacity",0)
                 .remove()
                 .each("end",function(){
+                    nv.log("got here")
                     geraGrafico(novoJson)
                 })
     } else {
@@ -206,7 +216,7 @@ function formataNumero(nStr){
 }
 
 if (Browser.Version() > 8) {
-    geraGrafico("prefeitos_partidos")
+    geraGrafico("segturno_partidos")
     $('#legendaDeCores').zoom();
     //Funçào que identifica clique nas abas
     $("#estadaoDadosAbas li").click( function() {
