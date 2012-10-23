@@ -419,7 +419,7 @@ nv.models.bullet = function() {
                     conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
                 conteudo_html += '<thead><tr><th></th><th>2012</th><tr/></thead><tbody>'
                 conteudo_html += '<tr><th>No 2˚ turno</th>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
+                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
                 conteudo_html += '</tbody></table>'
             
             } else {
@@ -432,7 +432,7 @@ nv.models.bullet = function() {
                 conteudo_html += '<tr><th>Eleitos no 1˚ turno</th>'
                     conteudo_html += '<td> - </td>'
                     conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>Classificados para<br/> o 2˚ turno</th>'
+                conteudo_html += '<tr><th>Eleitos no 2˚ turno</th>'
                     conteudo_html += '<td> - </td>'
                     conteudo_html += '<td>' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
                 conteudo_html += '<tr><th>Eleitos (1˚ e 2˚ turnos)</th>'
