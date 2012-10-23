@@ -376,78 +376,22 @@ nv.models.bullet = function() {
       var range = g.selectAll('rect.nv-range')
           .data(rangez);
 
-      function legenda_partido() {
-            if (projecao=="votos") {
-                var conteudo_html = ""
-                conteudo_html = '<table><caption>Votos recebidos pelo '+ d.title.toUpperCase() + '</caption>'
-                conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
-                conteudo_html += '<tr><th>No 1˚ turno</th>'
-                    conteudo_html += '<td class="leg20081turno">' + formataNumero(d.dados2008[0]) + '</td>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>No 2˚ turno</th>'
-                    conteudo_html += '<td class="leg2008segturno">' + formataNumero(d.dados2008[1] - d.dados2008[0]) + '</td>'
-                    conteudo_html += '<td class="leg20122turno">' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>Total (1˚ e 2˚ turnos)</th>'
-                    conteudo_html += '<td class="leg2008final">' + formataNumero(d.valorFinal2008[0]) + '</td><td></td></tr>'
-                conteudo_html += '</tbody></table>'
-            
-            } else if (projecao=="eleitorado") {
-                var conteudo_html = ""
-                conteudo_html = '<table><caption>Eleitorado a ser governado pelo '+ d.title.toUpperCase() + '</caption>'
-                conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
-                conteudo_html += '<tr><th>No 1˚ turno</th>'
-                    conteudo_html += '<td> - </td>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>No 2˚ turno</th>'
-                    conteudo_html += '<td> - </td>'
-                    conteudo_html += '<td>' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>Total (1˚ e 2˚ turnos)</th>'
-                    conteudo_html += '<td class="leg20081turno">' + formataNumero(d.dados2008[0]) + '</td><td class="leg20122turno">'+ formataNumero(d.dados2012[1])  +'</td></tr>'
-                conteudo_html += '</tbody></table>'
-            
-            } else if (projecao=="segturno") {
-                var conteudo_html = ""
-                conteudo_html = '<table><caption>Prefeitos do '+ d.title.toUpperCase() + '</caption>'
-                    conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
-                conteudo_html += '<thead><tr><th></th><th>2012</th><tr/></thead><tbody>'
-                conteudo_html += '<tr><th>No 2˚ turno</th>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '</tbody></table>'
-            
-            } else {
-                var conteudo_html = ""
-                conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
-                conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
-                conteudo_html += '<tr><th>Eleitos no 1˚ turno</th>'
-                    conteudo_html += '<td> - </td>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>Classificados para<br/> o 2˚ turno</th>'
-                    conteudo_html += '<td> - </td>'
-                    conteudo_html += '<td>' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
-                conteudo_html += '<tr><th>Eleitos (1˚ e 2˚ turnos)</th>'
-                    conteudo_html += '<td class="leg20081turno">' + formataNumero(d.dados2008[0]) + '</td><td class="leg20122turno">'+ formataNumero(d.dados2012[1])  +'</td></tr>'
-                conteudo_html += '</tbody></table>'
-            }
-                    return conteudo_html
-      }
-
       range.enter().append('rect')
           .attr('class', function(d, i) { return 'nv-range nv-s' + i; })
           .attr('width', w0)
           .attr('height', availableHeight)
           .attr('x', reverse ? x0 : 0)
-          .on('mouseover', function(d,i) {
-                dispatch.elementMouseover({
-                    conteudo: legenda_partido(),
-                    value: d,
-                    label: (i <= 0) ? '' : (i > 1) ? 'Eleitos em<br/>Primeiro Turno<br/>em 2008:' : 'Eleitos em<br/>Segundo Turno</br>em 2008:', //TODO: make these labels a variable
-                    pos: [x1(d), heightFromTop]
-                })
+          .on('mouseover', function(d,i) { 
+              dispatch.elementMouseover({
+                value: d,
+                label: (i <= 0) ? 'Maximum' : (i > 1) ? 'Minimum' : 'Mean', //TODO: make these labels a variable
+                pos: [x1(d), availableHeight/2]
+              })
           })
           .on('mouseout', function(d,i) { 
               dispatch.elementMouseout({
                 value: d,
-                label: (i <= 0) ? '' : (i >=1) ? 'Eleitos em<br/>Primeiro Turno<br/>em 2008:' : 'Eleitos em<br/>Segundo Turno</br>em 2008:' //TODO: make these labels a variable
+                label: (i <= 0) ? 'Minimum' : (i >=1) ? 'Maximum' : 'Mean' //TODO: make these labels a variable
               })
           })
 
@@ -464,15 +408,14 @@ nv.models.bullet = function() {
       measure.enter().append('rect')
           .attr('class', function(d, i) { return 'nv-measure nv-s' + i; })
           .attr('width', w0)
-          .attr('height', availableHeight / 2)
+          .attr('height', availableHeight / 3)
           .attr('x', reverse ? x0 : 0)
-          .attr('y', availableHeight / 2)
-          .on('mouseover', function(d,i) { 
+          .attr('y', availableHeight / 3)
+          .on('mouseover', function(d) { 
               dispatch.elementMouseover({
-                conteudo: legenda_partido(),
                 value: d,
-                label: (i<=0) ? 'Total possível de eleitos<br/>ao fim do segundo turno:' : 'Total de eleitos<br/>em primeiro turno:', //TODO: make these labels a variable
-                pos: [x1(d), heightFromTop]
+                label: 'Current', //TODO: make these labels a variable
+                pos: [x1(d), availableHeight/2]
               })
           })
           .on('mouseout', function(d) { 
@@ -491,26 +434,26 @@ nv.models.bullet = function() {
 
 
       // Update the marker lines.
-      var marker = g.selectAll('path.nv-markerLine')
+      var marker = g.selectAll('path.nv-markerTriangle')
           .data(markerz);
 
-      var h3 =  availableHeight / 2;
+      var h3 =  availableHeight / 6;
       marker.enter().append('path')
-          .attr('class', 'nv-markerLine')
+          .attr('class', 'nv-markerTriangle')
           .attr('transform', function(d) { return 'translate(' + x0(d) + ',' + (availableHeight / 2) + ')' })
-          .attr('d', 'M0 ' + (-h3/2) + ' v ' + h3 + ' ' + (-h3))
+          .attr('d', 'M0,' + h3 + 'L' + h3 + ',' + (-h3) + ' ' + (-h3) + ',' + (-h3) + 'Z')
           .on('mouseover', function(d,i) {
               dispatch.elementMouseover({
                     conteudo: legenda_partido(),
                 value: d,
-                label: 'Total de Prefeitos eleitos em 2008',
-                pos: [x1(d), heightFromTop]
+                label: 'Previous',
+                pos: [x1(d), availableHeight/2]
               })
           })
           .on('mouseout', function(d,i) {
               dispatch.elementMouseout({
                 value: d,
-                label: 'Total de Prefeitos eleitos em 2008'
+                label: 'Previous'
               })
           });
 
@@ -626,7 +569,7 @@ nv.models.bulletChart = function() {
     , height = 30
     , tickFormat = null
     , forceX = 0
-    , tooltips = true
+    , tooltips = false
     , tooltip = function(key, x, y, e, graph) {
         return '<h3>' + e.label + '</h3>' +
                '<p>' +  e.value + '</p>'
