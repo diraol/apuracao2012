@@ -1,7 +1,6 @@
 Apuracao = (function ($) {
-    var width = 956,
-        height = 510,
-        maxHeight = 510,
+    var width = undefined,
+        height = undefined,
         maxSvgHeight = 434, //retirados 40px das abas e 18px do titulo e 17 linha fina
         margin = {top: 5, right: 30, bottom: 20, left: 1}
 
@@ -9,14 +8,15 @@ Apuracao = (function ($) {
         barHeight = 43,
         barMargin = {top: 2, right: 14, bottom: 20, left: 25};
 
-    var duracao = 1250,
-        grafico = '',
+    var grafico = '',
         erroEncontrado = false,
         mensagemErro = "",
         baseEscala = 0
 
+    function initialize(_width, _height) {
+        width = _width;
+        height = _height;
 
-    function initialize() {
         geraGrafico("segturno_partidos")
         $('#legendaDeCores').zoom();
         //Funçào que identifica clique nas abas
@@ -60,7 +60,6 @@ Apuracao = (function ($) {
                               .attr("width", width)
 
                     svg.transition()
-                            .duration(duracao)
                             .attr("height",function() { return calculaAlturaSVG(data.length)+'px';})
                     //*
                     if (!d3.select("#retornaBackground")[0][0]) {
@@ -87,7 +86,7 @@ Apuracao = (function ($) {
                             .append("g")
                             .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
                             .on("click",avancaGrafico)
-                            .transition().duration(duracao)
+                            .transition()
                             .call(chart);
                     return chart;
                 })
@@ -134,26 +133,21 @@ Apuracao = (function ($) {
             //Efeito de redução do gráfico atual
             d3.selectAll(".nv-measure")
                 .transition()
-                    .duration(duracao)
                     .attr("width",0)
             d3.selectAll(".nv-range")
                 .transition()
-                    .duration(duracao)
                     .attr("width",0)
             d3.selectAll(".nv-markerTriangle")
                 .transition()
-                    .duration(duracao)
                     .style("opacity",0)
             d3.select("#svgEstadaoDados")
                 .transition()
-                    .duration(duracao)
                     .attr("height",0)
             nv.log(jsonAtual)
             nv.log("#"+jsonAtual)
             //Reduzindo e removendo o gráfico atual e adicionando novo gráfico ao final da transição
             d3.select("#"+jsonAtual)
                 .transition()
-                    .duration(duracao)
                     .style("opacity",0)
                     .remove()
                     .each("end",function(){
