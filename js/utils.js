@@ -1,5 +1,4 @@
-var pilhaJson = [],
-    jsonAtual = "",
+var jsonAtual = "",
     projecao = "segturno";
 
 function formataNumero(nStr){
@@ -12,5 +11,16 @@ function formataNumero(nStr){
         x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
+}
+
+function alertar(mensagemErro) {
+    var div = document.getElementById("alertar")
+    div.style.display = 'block'
+    div.style.top = height/2+'px'
+    div.innerHTML = mensagemErro + "<br/><span id='fechar'>fechar</span>"
+}
+
+function esconderAlerta() {
+    document.getElementById("alertar").style.display = 'none'
 }
 

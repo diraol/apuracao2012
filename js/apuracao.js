@@ -10,7 +10,6 @@ Apuracao = (function ($) {
 
     var grafico = '',
         erroEncontrado = false,
-        mensagemErro = "",
         baseEscala = 0
 
     function initialize(_width, _height) {
@@ -25,8 +24,6 @@ Apuracao = (function ($) {
             projecao = this.firstChild.id
             $("#estadaoDadosAbas a.selected").removeClass("selected")
             $(this.firstChild).addClass("selected")
-            pilhaJson.length = 0
-            $("#estadaoDadosAbas  #origemDados").text("Brasil")
             novoGrafico(projecao+"_partidos")
         })
     }
@@ -71,7 +68,6 @@ Apuracao = (function ($) {
                             .attr("width", width)//width - margin.left - margin.right)
                             .attr("height", height)//height - margin.top - margin.bottom)
                             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-                            .on("click",voltaGrafico)
                     }
                     //*/
 
@@ -85,26 +81,20 @@ Apuracao = (function ($) {
                         .enter()
                             .append("g")
                             .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
-                            .on("click",avancaGrafico)
                             .transition()
                             .call(chart);
                     return chart;
                 })
             } else {
                 erroEncontrado = true
-                voltaGrafico()
-                mensagemErro = "Dados não disponíveis no momento"
-                alertar()
+                alertar("Dados não disponíveis no momento")
             }
         })
     }
 
     //Função que faz transição entre dois gráficos
     function novoGrafico(novoJson){
-        nv.log("novoGrafico: ")
-        nv.log("      " + novoJson)
         if (!erroEncontrado){
-
             if (projecao=="votos") {
                 if (novoJson.indexOf("partidos") != -1) {
                     $("#origemDados").text("Veja quantos votos cada partido recebeu em 2012 e compare com 2008")
@@ -143,8 +133,6 @@ Apuracao = (function ($) {
             d3.select("#svgEstadaoDados")
                 .transition()
                     .attr("height",0)
-            nv.log(jsonAtual)
-            nv.log("#"+jsonAtual)
             //Reduzindo e removendo o gráfico atual e adicionando novo gráfico ao final da transição
             d3.select("#"+jsonAtual)
                 .transition()
@@ -160,42 +148,9 @@ Apuracao = (function ($) {
         }
     }
 
-    function verificaEstaNaPilha(valor) {
-        return (pilhaJson.indexOf(valor) != -1);
+    function mudamapa() {
+        return;
     }
-
-    function avancaGrafico(d){
-        if (pilhaJson.length) {
-            if (verificaEstaNaPilha(d.nextlevel)) {
-                voltaGrafico()
-            } else {
-                pilhaJson.push(jsonAtual)
-                novoGrafico(d.nextlevel)
-            }
-        } else {
-            pilhaJson.push(jsonAtual)
-            novoGrafico(d.nextlevel)
-        }
-    }
-
-    function voltaGrafico(){
-        if (pilhaJson.length) {
-            var novoJson = pilhaJson.pop()
-            novoGrafico(novoJson)
-        }
-    }
-
-    function alertar() {
-        var div = document.getElementById("alertar")
-        div.style.display = 'block'
-        div.style.top = height/2+'px'
-        div.innerHTML = mensagemErro + "<br/><span id='fechar'>fechar</span>"
-    }
-
-    function esconderAlerta() {
-        document.getElementById("alertar").style.display = 'none'
-    }
-
 
     return {
       initialize: initialize

@@ -379,10 +379,7 @@ nv.models.bullet = function() {
       function legenda_partido() {
             if (projecao=="votos") {
                 var conteudo_html = ""
-                if (!pilhaJson.length)
-                    conteudo_html = '<table><caption>Votos recebidos pelo '+ d.title.toUpperCase() + '</caption>'
-                else
-                    conteudo_html = '<table><caption>Votos recebidos pelo '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
+                conteudo_html = '<table><caption>Votos recebidos pelo '+ d.title.toUpperCase() + '</caption>'
                 conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
                 conteudo_html += '<tr><th>No 1˚ turno</th>'
                     conteudo_html += '<td class="leg20081turno">' + formataNumero(d.dados2008[0]) + '</td>'
@@ -396,10 +393,7 @@ nv.models.bullet = function() {
             
             } else if (projecao=="eleitorado") {
                 var conteudo_html = ""
-                if (!pilhaJson.length)
-                    conteudo_html = '<table><caption>Eleitorado a ser governado pelo '+ d.title.toUpperCase() + '</caption>'
-                else
-                    conteudo_html = '<table><caption>Eleitorado a ser governado pelo '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
+                conteudo_html = '<table><caption>Eleitorado a ser governado pelo '+ d.title.toUpperCase() + '</caption>'
                 conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
                 conteudo_html += '<tr><th>No 1˚ turno</th>'
                     conteudo_html += '<td> - </td>'
@@ -413,21 +407,16 @@ nv.models.bullet = function() {
             
             } else if (projecao=="segturno") {
                 var conteudo_html = ""
-                if (!pilhaJson.length)
-                    conteudo_html = '<table><caption>Prefeitos do '+ d.title.toUpperCase() + '</caption>'
-                else
+                conteudo_html = '<table><caption>Prefeitos do '+ d.title.toUpperCase() + '</caption>'
                     conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
                 conteudo_html += '<thead><tr><th></th><th>2012</th><tr/></thead><tbody>'
                 conteudo_html += '<tr><th>No 2˚ turno</th>'
-                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[1] - d.dados2012[0]) + '</td></tr>'
+                    conteudo_html += '<td class="leg20121turno">' + formataNumero(d.dados2012[0]) + '</td></tr>'
                 conteudo_html += '</tbody></table>'
             
             } else {
                 var conteudo_html = ""
-                if (pilhaJson.length)
-                    conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
-                else
-                    conteudo_html = '<table><caption>Prefeitos do '+ d.title.toUpperCase() + '</caption>'
+                conteudo_html = '<table><caption>Prefeitos do '+ jsonAtual.split("_")[1].toUpperCase() + ' (' + d.title.toUpperCase() + ')</caption>'
                 conteudo_html += '<thead><tr><th></th><th>2008</th><th>2012</th><tr/></thead><tbody>'
                 conteudo_html += '<tr><th>Eleitos no 1˚ turno</th>'
                     conteudo_html += '<td> - </td>'
@@ -667,23 +656,6 @@ nv.models.bulletChart = function() {
   
   function chart(selection) {
     //Calculate maximum X for scaling
-
-    function escala(dados) {
-        if(pilhaJson.length) {
-            var comparador = pilhaJson[pilhaJson.length - 1] + "_outros"
-        }
-        if(!pilhaJson.length) {
-            //Se pilha vazia, primeiro gráfico, calcula escala
-            return calculaEscala(dados)
-        } else if (comparador == jsonAtual) {
-            forceX = baseEscala
-            return baseEscala  
-        } else {
-            //Verifica se está transitando de/para estados.
-            return calculaEscala(dados)
-        }
-    }
-
     function calculaEscala(dados) {
         dados.each(function(d) {
             for (var i=0; i < d.dados2008.length; i++)
@@ -697,7 +669,7 @@ nv.models.bulletChart = function() {
         return forceX
     }
 
-    bullet.forceX(escala(selection))
+    bullet.forceX(calculaEscala(selection))
     
     selection.each(function(d, i) {
       var container = d3.select(this);
