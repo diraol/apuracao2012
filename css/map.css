@@ -1,0 +1,13 @@
+#map {
+    float: right;
+}
+#map path {
+  fill: crimson;
+  stroke-width: 250px;
+  stroke: white;
+}
+
+#map path:hover {
+  stroke-width: 500px;
+}
+
