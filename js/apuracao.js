@@ -15,6 +15,7 @@ Apuracao = (function ($) {
 
     function on(type, listener, capture) {
         eventListeners.push(arguments);
+        _setupEventListeners();
 
         return this;
     }

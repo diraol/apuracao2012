@@ -10,6 +10,7 @@ Map = (function ($) {
 
     function on(type, listener, capture) {
         eventListeners.push(arguments);
+        _setupEventListeners();
 
         return this;
     };
@@ -17,7 +18,6 @@ Map = (function ($) {
     function _loadSvgInto(container, svgPath) {
         d3.xml(svgPath, 'image/svg+xml', function (xml) {
             $(container).html(xml.documentElement);
-            _setupEventListeners();
         });
     };
 
