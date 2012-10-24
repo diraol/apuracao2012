@@ -1,6 +1,7 @@
 Apuracao = (function ($) {
+    var container = undefined;
+
     var width = undefined,
-        height = undefined,
         maxSvgHeight = 434, //retirados 40px das abas e 18px do titulo e 17 linha fina
         margin = {top: 5, right: 30, bottom: 20, left: 1}
 
@@ -9,29 +10,17 @@ Apuracao = (function ($) {
         barMargin = {top: 2, right: 14, bottom: 20, left: 25};
 
     var grafico = '',
-        erroEncontrado = false,
         baseEscala = 0
 
-    function initialize(_width, _height) {
-        width = _width;
-        height = _height;
+    function initialize(containerId) {
+        container = document.getElementById(containerId);
+        width = container.offsetWidth;
 
-        geraGrafico("segturno_partidos")
         $('#legendaDeCores').zoom();
-        //Funçào que identifica clique nas abas
-        $("#estadaoDadosAbas li").click( function() {
-            esconderAlerta()
-            projecao = this.firstChild.id
-            $("#estadaoDadosAbas a.selected").removeClass("selected")
-            $(this.firstChild).addClass("selected")
-            novoGrafico(projecao+"_partidos")
-        })
     }
 
     //Função que gera um gráfico
     function geraGrafico(nomeJson) {
-
-        jsonAtual = nomeJson
         var arquivo = "dados/"+nomeJson+".json"
         d3.json("dados/"+nomeJson+".json", function(data) {
             if (data) {
@@ -42,34 +31,16 @@ Apuracao = (function ($) {
                         chart.margin(barMargin)
 
                     function calculaAlturaSVG(barras){
-                        var altura = 43 //Tamanhho da última barra com o exio X
-                        for (var i=0; i<barras ; i++)
-                            altura += 24;
-
-                        if (altura > maxSvgHeight)
-                            return maxSvgHeight
-                        else
-                            return altura
+                        var altura_inicial = 43 //Tamanhho da última barra com o exio X
+                        return altura_inicial + (barras * 24);
                     }
 
-                    var svg = d3.select('#svgEstadaoDados')
+                    var svg = d3.select(container).append("svg")
                               .attr("height", 0)
                               .attr("width", width)
 
                     svg.transition()
                             .attr("height",function() { return calculaAlturaSVG(data.length)+'px';})
-                    //*
-                    if (!d3.select("#retornaBackground")[0][0]) {
-                        svg.append("rect")
-                            .attr("id", "retornaBackground")
-                            .attr("alt", "Clique na barra para ver um gráfico mais detalhado, em 'outros' para ver mais dados ou no fundo do gráfico para voltar à visualização anterior.")
-                            .attr("title", "Clique na barra para ver um gráfico mais detalhado, em 'outros' para ver mais dados ou no fundo do gráfico para voltar à visualização anterior.")
-                            .attr("class", "retornaBackground")
-                            .attr("width", width)//width - margin.left - margin.right)
-                            .attr("height", height)//height - margin.top - margin.bottom)
-                            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-                    }
-                    //*/
 
                     base = svg.append("g")
                             .attr("height", function() { return calculaAlturaSVG(data.length)+'px';})
@@ -86,66 +57,65 @@ Apuracao = (function ($) {
                     return chart;
                 })
             } else {
-                erroEncontrado = true
                 alertar("Dados não disponíveis no momento")
             }
         })
     }
 
     //Função que faz transição entre dois gráficos
-    function novoGrafico(novoJson){
-        if (!erroEncontrado){
-            if (projecao=="votos") {
-                if (novoJson.indexOf("partidos") != -1) {
-                    $("#origemDados").text("Veja quantos votos cada partido recebeu em 2012 e compare com 2008")
-                } else {
-                    $("#origemDados").text('Veja quantos votos o ' + novoJson.split("_")[1].toUpperCase() + ' recebeu em 2012 e compare com 2008')
-                }
-            } else if (projecao=="eleitorado") {
-               if (novoJson.indexOf("partidos") != -1) {
-                    $("#origemDados").text("Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008")
-                } else {
-                    $("#origemDados").text('Veja quantos eleitores o ' + novoJson.split("_")[1].toUpperCase() + ' vai governar pós-2012 e compare a 2008')
-                }
-            } else if (projecao=="segturno") {
-               if (novoJson.indexOf("partidos") != -1) {
-                    $("#origemDados").text("Veja quantos prefeitos cada partido elegeu no segundo turno em 2012")
-                } else {
-                    $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012')
-                }
+    function draw(projecao){
+        var novoJson = projecao+"_partidos";
+
+        if (projecao=="votos") {
+            if (novoJson.indexOf("partidos") != -1) {
+                $("#origemDados").text("Veja quantos votos cada partido recebeu em 2012 e compare com 2008")
             } else {
-                if (novoJson.indexOf("partidos") != -1) {
-                    $("#origemDados").text("Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008")
-                } else {
-                    $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012 e compare com 2008')
-                }
+                $("#origemDados").text('Veja quantos votos o ' + novoJson.split("_")[1].toUpperCase() + ' recebeu em 2012 e compare com 2008')
             }
-            //Efeito de redução do gráfico atual
-            d3.selectAll(".nv-measure")
-                .transition()
-                    .attr("width",0)
-            d3.selectAll(".nv-range")
-                .transition()
-                    .attr("width",0)
-            d3.selectAll(".nv-markerTriangle")
-                .transition()
-                    .style("opacity",0)
-            d3.select("#svgEstadaoDados")
-                .transition()
-                    .attr("height",0)
-            //Reduzindo e removendo o gráfico atual e adicionando novo gráfico ao final da transição
-            d3.select("#"+jsonAtual)
-                .transition()
-                    .style("opacity",0)
-                    .remove()
-                    .each("end",function(){
-                        nv.log("got here")
-                        geraGrafico(novoJson)
-                    })
+        } else if (projecao=="eleitorado") {
+           if (novoJson.indexOf("partidos") != -1) {
+                $("#origemDados").text("Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008")
+            } else {
+                $("#origemDados").text('Veja quantos eleitores o ' + novoJson.split("_")[1].toUpperCase() + ' vai governar pós-2012 e compare a 2008')
+            }
+        } else if (projecao=="segturno") {
+           if (novoJson.indexOf("partidos") != -1) {
+                $("#origemDados").text("Veja quantos prefeitos cada partido elegeu no segundo turno em 2012")
+            } else {
+                $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012')
+            }
         } else {
-            erroEncontrado = false;
-            geraGrafico(novoJson)
+            if (novoJson.indexOf("partidos") != -1) {
+                $("#origemDados").text("Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008")
+            } else {
+                $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012 e compare com 2008')
+            }
         }
+        //Efeito de redução do gráfico atual
+        d3.selectAll(".nv-measure")
+            .transition()
+                .attr("width",0)
+        d3.selectAll(".nv-range")
+            .transition()
+                .attr("width",0)
+        d3.selectAll(".nv-markerTriangle")
+            .transition()
+                .style("opacity",0)
+        d3.select(container)
+            .transition()
+                .attr("height",0)
+        //Reduzindo e removendo o gráfico atual e adicionando novo gráfico ao final da transição
+        d3.select(container).select("svg")
+            .transition()
+                .style("opacity",0)
+                .remove()
+
+        d3.select(container)
+            .transition()
+                .each("end",function(){
+                    nv.log("got here")
+                    geraGrafico(novoJson)
+                })
     }
 
     function mudamapa() {
@@ -153,6 +123,7 @@ Apuracao = (function ($) {
     }
 
     return {
-      initialize: initialize
+      initialize: initialize,
+      draw: draw
     }
 })(jQuery);

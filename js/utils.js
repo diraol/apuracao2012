@@ -1,6 +1,3 @@
-var jsonAtual = "",
-    projecao = "segturno";
-
 function formataNumero(nStr){
     nStr += '';
     x = nStr.split(',');

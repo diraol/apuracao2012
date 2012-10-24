@@ -146,9 +146,9 @@
 
 
 /* CONTEUDO SVG */
-#conteudoPrincipal figure,
-#conteudoPrincipal figure #svgEstadaoDados,
-#conteudoPrincipal figure #svgEstadaoDados #prefeitos_partidos {
+#apuracao,
+#apuracao #prefeitos_partidos {
+    max-height: 470px;
     width: 956px;
     margin: 0 !important;
 }
