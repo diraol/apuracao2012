@@ -4,6 +4,8 @@ Apuracao = (function ($) {
         barHeight = 43,
         barMargin = {top: 2, right: 14, bottom: 20, left: 55};
 
+    var eventListeners = []
+
     function initialize(containerId) {
         container = document.getElementById(containerId);
         barWidth = container.offsetWidth - barMargin.left - barMargin.right;
@@ -11,35 +13,10 @@ Apuracao = (function ($) {
         $('#legendaDeCores').zoom();
     }
 
-    //Função que gera um gráfico
-    function geraGrafico(nomeJson) {
-        var arquivo = "dados/"+nomeJson+".json"
-        d3.json(arquivo, function(data) {
-            if (data) {
-                var chart = BulletChart.initialize()
-                                       .height(barHeight)
-                                       .width(barWidth)
+    function on(type, listener, capture) {
+        eventListeners.push(arguments);
 
-                var vis = bars().data(data)
-                  .enter().append("svg")
-                    .attr("class", "bullet")
-                    .attr("width", barWidth)
-                    .attr("height", barHeight)
-                  .append("g")
-                    .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
-                    .call(chart);
-
-                var title = vis.append("g")
-                    .attr("text-anchor", "end")
-                    .attr("transform", "translate(-6," + (barHeight - barMargin.top - barMargin.bottom) + ")");
-
-                title.append("text")
-                    .attr("class", "title")
-                    .text(function(d) { return d.title; });
-            } else {
-                alertar("Dados não disponíveis no momento")
-            }
-        })
+        return this;
     }
 
     //Função que faz transição entre dois gráficos
@@ -72,11 +49,60 @@ Apuracao = (function ($) {
             }
         }
 
-        geraGrafico(novoJson)
+        _geraGrafico(novoJson)
+    }
+
+    function _geraGrafico(nomeJson) {
+        var arquivo = "dados/"+nomeJson+".json"
+        d3.json(arquivo, function(data) {
+            if (data) {
+                var chart = BulletChart.initialize()
+                                       .height(barHeight)
+                                       .width(barWidth)
+
+                var vis = _bars().data(data)
+                  .enter().append("svg")
+                    .attr("class", "bullet")
+                    .attr("width", barWidth)
+                    .attr("height", barHeight)
+                  .append("g")
+                    .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
+                    .call(chart);
+
+                var title = vis.append("g")
+                    .attr("text-anchor", "end")
+                    .attr("transform", "translate(-6," + (barHeight - barMargin.top - barMargin.bottom) + ")");
+
+                title.append("text")
+                    .attr("class", "title")
+                    .text(function(d) { return d.title; });
+
+                _setupEventListeners();
+            } else {
+                alertar("Dados não disponíveis no momento")
+            }
+        })
+    }
+
+    function _bars() {
+        return d3.select(container).selectAll("svg.bullet");
+    }
+
+    function _setupEventListeners() {
+        for (var i in eventListeners) {
+            var type = eventListeners[i][0],
+                listener = eventListeners[i][1],
+                capture = eventListeners[i][2];
+
+            _bars().on(type, listener, capture);
+        }
+
+        return _bars();
     }
 
     return {
       initialize: initialize,
-      draw: draw
+      draw: draw,
+      on: on
     }
 })(jQuery);

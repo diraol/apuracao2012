@@ -1,8 +1,9 @@
 Map = (function ($) {
-    var container = undefined;
+    var container = undefined,
+        eventListeners = [];
 
     function initialize(containerId, svgPath) {
-        container = $('#'+containerId);
+        container = document.getElementById(containerId);
 
         _loadSvgInto(container, svgPath);
     };
@@ -11,15 +12,33 @@ Map = (function ($) {
         eventListeners.push(arguments);
 
         return this;
-    }
+    };
 
     function _loadSvgInto(container, svgPath) {
         d3.xml(svgPath, 'image/svg+xml', function (xml) {
-            container.html(xml.documentElement);
+            $(container).html(xml.documentElement);
+            _setupEventListeners();
         });
     };
 
+    function _setupEventListeners() {
+        for (var i in eventListeners) {
+            var type = eventListeners[i][0],
+                listener = eventListeners[i][1],
+                capture = eventListeners[i][2];
+
+            _regions().on(type, listener, capture);
+        }
+
+        return _regions();
+    }
+
+    function _regions() {
+        return d3.select(container).selectAll("path");
+    }
+
     return {
-        initialize: initialize
+        initialize: initialize,
+        on: on
     };
 })(jQuery);
