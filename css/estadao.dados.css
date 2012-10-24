@@ -1,0 +1,298 @@
+/***********
+     Gerais 
+************/
+body {
+    background-color: white;
+    width: 980px;
+    margin: 10px auto;
+    font-size: 13px;
+    font-family: Arial;
+    color: white;
+    margin-top: 0px;
+}
+
+hr {
+    color: lightgrey;
+    background: lightgrey;
+    border: 0;
+    height: 1px;
+}
+
+h1 {
+	/*font-family: Georgia,"Times New Roman",Times,serif;*/
+	/* font-size: 35px; ou 1.9em */
+	line-height: 30px;
+	margin:0px;
+}
+
+h2 {
+	/* font-size:14px; ou 1.5em */
+	line-height:17px;
+	font-weight:normal;
+	margin-bottom:20px;
+}
+
+h3 {
+	/* font-size:12px; ou 1.1em */
+	line-height:14px;
+	color:#999;
+	font-weight:normal;
+	margin-bottom:10px;
+	margin-top:0px;
+}
+
+h4 {
+    font-size:1.1em;
+    text-decoration:none;
+    font-weight:normal;
+    color:#23A4FF;
+}
+
+input, select {
+    font-size:0.9em;
+}
+
+table {
+    margin-top:-10px;
+    margin-left:7px;
+}
+
+a {
+    color:#23A4FF;
+}
+
+#log {
+    position:absolute;
+    top:10px;
+    font-size:1.0em;
+    font-weight:bold;
+    color:#23A4FF;
+}
+
+/*TOOLTIPS*/
+.tip {
+    color: #111;
+    width: 139px;
+    background-color: white;
+    border:1px solid #ccc;
+    -moz-box-shadow:#555 2px 2px 8px;
+    -webkit-box-shadow:#555 2px 2px 8px;
+    -o-box-shadow:#555 2px 2px 8px;
+    box-shadow:#555 2px 2px 8px;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    font-size:10px;
+    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+    padding:7px;
+}
+
+/***********************
+     Barra Estadão Dados
+************************/
+#img_estadao_dados {
+    display: block;
+    position: absolute;
+    left: 0;
+}
+
+#barraEstadaoDados {
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    width: 950px;
+    margin: 0 auto;
+    padding: 0px 15px;
+    position: relative;
+    z-index: 5000;
+    height: 38px;
+}
+
+#barraEstadaoDados, .menuED li ul {
+    background: -moz-linear-gradient(
+        top,
+        #303030 0%,
+        #1a1a1a);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#303030),
+        to(#1a1a1a));
+    background-position: top left;
+    -moz-box-shadow: 3px 3px 10px 0 #444;
+    -webkit-box-shadow: 3px 3px 10px 0 #444;
+}
+
+.menuED {
+    height: 38px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    z-index: 9000;
+}
+
+.menuED li {
+    position: relative;
+    float: left;
+    border-right: 1px solid #c0c0c0;
+    display: block;
+    height: 38px;
+    color: #fff;
+    width: auto;
+    /* Drop */
+    padding-right:30px !important;
+    background-image:url(../imgs/drop.png);
+    background-repeat:no-repeat;
+    background-position:right;
+}
+
+.menuED li:first-child {
+    display: block;
+    /* Drop */
+    padding-right: 0;
+    background-image: none;
+}
+
+.menuED li figure {
+    margin: 0;
+    z-index: 5005;
+    width: 140px;
+    height: 38px;
+}
+
+.menuED li a {
+    font-size: 1.3em;
+    color: #fff;
+    text-decoration: none;
+    padding: 9px 10px;
+    display: block;
+}
+
+.menuED li:hover, .menuED li ul li:hover, .menuED li ul li:first-child:hover {
+    background-image: none;
+    color: #A5E7EC;
+    text-shadow: 0px 0px 5px #fff;
+}
+
+.menuED li ul {
+    position: absolute;
+    top: 38px;
+    display: none;
+    padding: 0;
+    -moz-box-shadow: 3px 3px 10px 0 #444;
+    -webkit-box-shadow: 3px 3px 10px 0 #444;
+}
+
+.menuED li:hover ul, .menuED li.over ul {
+    display: block;
+}
+
+.menuED li ul li, .menuED li ul li:first-child {
+    border: none; 
+    display: block;
+    margin-top: 0;
+    height: 38px;
+    background: none;
+    padding: 0 !important;
+    text-shadow: none;
+    width: auto;
+    white-space: nowrap;
+}
+
+.menuED li.desativado, .menuED li.desativado:hover {
+    background: none;
+    padding: 0 !important;
+    height: 38px;
+    display: block;
+    text-shadow: none;
+}
+
+.menuED li.desativado a, .menuED li.desativado:hover a  {
+    height: 38px;
+    background: none;
+    color: #999;
+    font-size: 1.2em;
+    padding: 9px 10px;
+    text-shadow: none;
+}
+
+/**************
+     Cabeçalhos 
+***************/
+
+header hgroup {
+    margin-top: 15px;
+}
+
+header hgroup h1 {
+    font-size: 1.9em;
+    color: black;
+}
+
+header hgroup h3 {
+    font-size: 1.1em;
+    color: #333;
+}
+
+#conteudo_principal hgroup {
+    margin-bottom: 15px;
+}
+
+#conteudo_principal hgroup h2 {
+    font-size: 1.5em;
+    color: #808080;
+    margin-top: 10px;
+}
+
+#conteudo_principal hgroup h4 {
+    color: #808080;
+    margin-top: 3px;
+}
+
+
+/****************
+    Conteúdo extra
+*****************/
+#leia_tambem {
+    font-size: 0.9em;
+    color: #404040;
+}
+
+#leia_tambem h1 {
+    font-weight: bold;
+}
+
+#fontes {
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/********
+    Rodapé  
+*********/
+footer {
+	font-size: 0.9em;
+	color: #666;
+	height: 10px;
+	padding: 10px 0;
+    margin-top: 15px;
+	border-top: 1px #666 dotted;
+	width: 980px;
+	float: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+#infografico{
+	min-width:980px;
+	min-height:620px
+}
+
+

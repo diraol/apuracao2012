@@ -18,46 +18,33 @@
 
 .zoom img::selection { background-color: transparent; }
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
-footer {
-    display: block;
-    font-size: 0.8em;
-    position: absolute;
-    top: 310px;
-    right: -168px;
-
-    /* Rotate from top left corner (not default) */
-    -webkit-transform: rotate(-90deg); 
-    -moz-transform:    rotate(-90deg); 
-    -ms-transform:     rotate(-90deg); 
-    -o-transform:      rotate(-90deg); 
+.menuED li.oculto {
+    display: none;
 }
 
 .retornaBackground {
     fill: none;
     pointer-events: all;
-}
-
-#estadaoDadosMainFrame {
     width: 956px;
-    max-height: 510px;
-    height: auto;
+}
+#conteudoPrincipal {
+    width: 956px;
     display: block;
     font-family: arial;
     margin-left: 1px;
 }
 
-#estadaoDadosMainFrame #titulo {
+#titulo {
     font-weight: bold;
     font: bold 18px/25px arial;
-    padding-left: 10px;
+    margin-top: 4px;
+    line-height:30px;
+    text-transform: uppercase;
+    color:black;
+    font-size:1.9em
 }
 
-#estadaoDadosMainFrame .linhafina {
+#conteudoPrincipal .linhafina {
     color: lightGrey;
     background: lightGrey;
     border: 0;
@@ -66,16 +53,18 @@ footer {
 }
 
 /* TODO: Aplicar transição */
-#estadaoDadosMainFrame #origemDados {
-    font: bold 16px/33px arial; 
+#origemDados {
+    width: 620px;
+    margin-bottom: 4px;
+    display: inline-block
 }
 
 #legendaDeCores {
-    position: absolute;
+    float: right;
     width: 350px;
     height: 60px;
     right: 0px;
-    top: 0px;
+    top: -46px;
     z-index: 3000;
 }
 
@@ -106,24 +95,23 @@ footer {
     opacity: 0.7;
 }
 
-
-/* ABAS */
-#estadaoDadosAbas {
-    position: relative;
+/* ABAS - Gráfico */
+#graficoAbas {
+    position: absolute;
     height: 30px;
 }
 
-#estadaoDadosAbas ul {
+#graficoAbas ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-#estadaoDadosAbas li {
+#graficoAbas li {
     float: left;
 }
 
-#estadaoDadosAbas li a {
+#graficoAbas li a {
     display: block;
     height: 30px;
     margin: 0 2px 0 0;
@@ -137,14 +125,14 @@ footer {
     text-decoration: none;
 }
 
-#estadaoDadosAbas li a:hover {
+#graficoAbas li a:hover {
     text-decoration: none;
     background: white;
     cursor:auto;
 }
 
-#estadaoDadosAbas li a.selected,
-#estadaoDadosAbas li a.selected:hover {
+#graficoAbas li a.selected,
+#graficoAbas li a.selected:hover {
     height: 30px;
     margin: 0;
     font-weight: bold;
@@ -158,15 +146,15 @@ footer {
 
 
 /* CONTEUDO SVG */
-#estadaoDadosMainFrame div.conteudo,
-#estadaoDadosMainFrame div.conteudo #svgEstadaoDados,
-#estadaoDadosMainFrame div.conteudo #svgEstadaoDados #prefeitos_partidos {
-    max-height: 470px;
+#conteudoPrincipal figure,
+#conteudoPrincipal figure #svgEstadaoDados,
+#conteudoPrincipal figure #svgEstadaoDados #prefeitos_partidos {
     width: 956px;
-    height: auto;
+    margin: 0 !important;
 }
 
-#estadaoDadosMainFrame div.conteudo {
+#conteudoPrincipal figure {
+    display: block;
     padding: 0 !important;
     margin: 0 !important;
     border: none; /*1px solid #DFDFDF;*/
@@ -327,6 +315,7 @@ td.leg2008final {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+    color: black;
 }
 
 .nvtooltip h3 {

@@ -1,46 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta charset="UTF-8"/>
-	    <meta name="robots" content="index">
-	    <meta name="creator" content="Estadão.com.br">
-	    <meta name="creator" content="Estadão Dados">
-	    <meta name="creator" content="José Roberto Toledo">
-	    <meta name="creator" content="Daniel Bramatti"> 
-	    <meta name="creator" content="Amanda Rossi">
-	    <meta name="creator" content="Diego Rabatone (DiRaOL)"> 
-	    <meta property="og:site_name" content="Estadão Dados"/>
-	    <meta property="og:locale" content="pt_BR"/>
-	    <!-- meta tags específicas de cada projeto -->
-	    <meta name="author" content="DiRaOL"> <!-- A pessoa responsável pelo desenvolvimento deste arquivo -->
-	    <meta name="DC.creator" content="DiRaOL" /> <!-- Desenvolvedor da página -->
-	    <meta name="application-name" content="Apuração"> <!-- O nome desta aplicação -->
-	    <meta name="description" content="Ferramenta para visualização de dados de apuração eleitoral."> <!-- Descrição curta e precisa do conteúdo desta página -->
-	    <meta name="keywords" content="apuração ao vivo"> <!-- Palavras reletantes relativas ao conteúdo dessa página. Em formato texto e separadas por vírgula. -->
-	    <meta property="og:image" content="http://estadaodados.com/base/images/logo_estadao_dados.png"/> <!-- imagem que aparecerá no facebook quando o site for compartilhado -->
-	    <link rel="image_src" href="http://estadaodados.com/base/images/logo_estadao_dados.png"/> <!-- Outra forma de definir a imagem mostrada quando do compartilhamento da página -->
-	    <title>Estadão Dados: Apuração ao Vivo</title>
-	    <meta property="og:title" content="Estadão Dados: Apuração ao vivo"/>
-	    <meta property="og:url" content="http://estadaodados.com/html/apuracao/"/> <!-- ex: http://estadaodados.com/html/coligacoes/ -->
+     <!-- meta tags fixas do estadão dados -->
+        <meta charset="UTF-8">
+        <meta name="robots" content="index">
+        <meta name="creator" content="Diego Rabatone Oliveira">
+        <meta name="creator" content="Amanda Rossi">
+        <meta name="creator" content="José Roberto Toledo">
+        <meta name="creator" content="Daniel Bramatti"> 
+        <meta name="creator" content="Estadão Dados">
+        <meta name="creator" content="Estadão.com.br">
+        <meta property="og:site_name" content="Estadão Dados">
+        <meta property="og:locale" content="pt_BR">
+
+    <!-- meta tags específicas de cada projeto -->
+        <meta name="author" content="Diego Rabatone Oliveira"> <!-- A pessoa responsável pelo desenvolvimento deste arquivo -->
+        <meta name="DC.creator " content="Diego Rabatone Oliveira"> <!-- Desenvolvedor da página -->
+        <meta name="DC.creator.address" content="diraol@diraol.eng.br"> <!-- email do autor da página -->
+        <meta name="application-name" content="Eleições 2012"> <!-- O nome desta aplicação -->
+        <meta name="description" content=""> <!-- Descrição curta e precisa do conteúdo desta página -->
+        <meta name="keywords" content="dados abertos, opendata"> <!-- Palavras reletantes relativas ao conteúdo dessa página. Em formato texto e separadas por vírgula. -->
+        <meta property="og:title" content="Estadão Dados: Eleições 2012"/>
+        <meta property="og:url" content="http://estadaodados.com/html/eleicoes2012"/> <!-- ex: http://estadaodados.com/html/coligacoes/ -->
+        <meta property="og:image" content="http://estadaodados.com/html/base/imgs/logo_estadao_dados.png"/> <!-- imagem que aparecerá no facebook quando o site for compartilhado -->
+        <link rel="image_src" href="http://estadaodados.com/html/base/imgs/logo_estadao_dados.png"/> <!-- Outra forma de definir a imagem mostrada quando do compartilhamento da página -->
+    
+    <title>Estadão Dados</title>
+ 
+    <!-- CSS Files -->
+        <!-- Folhas de Estilos Fixas do Estadão Dados -->
+            <link type="text/css" href="css/estadao.css" rel="stylesheet" /> <!-- Folha de estilos padrão do Estadão -->
+            <link type="text/css" href="css/estadao.dados.css" rel="stylesheet" /> <!-- Folha de estilos padrão do Estadão Dados-->
+            <link rel="stylesheet" href="css/apuracao.css" />
+            <link rel="stylesheet" href="css/map.css" />
+    
+        <!-- Folhas de Estilos de Cada Projeto -->
+            <!--link type="text/css"  rel="stylesheet" href="./css/"/-->
+    
+    <!-- JavaScript Files -->
+        <!-- Script JavaScript padrões -->
+            <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+            <script type="text/javascript" src="js/d3.v2.min.js"></script>
+            <script type="text/javascript" src="js/nv.d3.js"></script>
+            <script language="javascript" type="text/javascript" src="js/jquery.zoom.min.js"></script>
         
-        <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-        <script type="text/javascript" src="js/d3.v2.min.js"></script>
-        <script type="text/javascript" src="js/nv.d3.js"></script>
-        <script type="text/javascript" src="js/jquery.zoom.min.js"></script>
-        <link rel="stylesheet" href="css/apuracao.css" />
-        <link rel="stylesheet" href="css/map.css" />
+        <!-- Script JavaScript específicos de cada projeto -->
+            <!--script languege="javascript" type='text/javascript' src='./js/'></script-->
+
     </head>
-  <body>
-        <section id="estadaoDadosMainFrame">
-            <div id="noIeError" style="position:absolute;">
-                <a href="http://estadaodados.com/html/eleicoes2012"><img src="imgs/tarjaEstadaoDados.jpg"/></a>
+    <body>
+        <header>
+            <!-- Barra Estadão Parceiros --><nav id="barraEstadaoParceiros"><a href="http://www.estadao.com.br/" target="_top" title="Estadão.com.br" class="lgBarraEstadaoParceiros"><img src="http://www.estadao.com.br/estadao/novo/img/logoEstadao.gif" width="150" height="27" border="0" alt="Estadão.com.br" target="_top" title="Estadão.com.br"></a><ul><li class="itemBarraEstadaoParceiros"><a href="http://politica.estadao.com.br/" target="_top" title="POLÍTICA">POLÍTICA</a></li><li class="itemBarraEstadaoParceiros"><a href="http://economia.estadao.com.br/" target="_top" title="ECONOMIA">ECONOMIA</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.estadao.com.br/internacional/" target="_top" title="INTERNACIONAL">INTERNACIONAL</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.estadao.com.br/esportes/" target="_top" title="ESPORTES">ESPORTES</a></li><li class="itemBarraEstadaoParceiros"><a href="http://link.estadao.com.br/" target="_top" title="TECNOLOGIA">TECNOLOGIA</a></li><li class="itemBarraEstadaoParceiros"><a href="http://divirta-se.estadao.com.br/" target="_top" title="DIVIRTA-SE">DIVIRTA-SE</a></li><li class="itemBarraEstadaoParceiros"><a href="http://pme.estadao.com.br/" target="_top" title="PME">PME</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.estadao.com.br/opiniao/" target="_top" title="OPINIÃO">OPINIÃO</a></li><li class="itemBarraEstadaoParceiros"><a href="http://radio.estadao.com.br/" target="_top" title="RÁDIO">RÁDIO</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.jt.com.br/" target="_top" title="JT">JT</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.territorioeldorado.limao.com.br/" target="_top" title="ELDORADO">ELDORADO</a></li><li class="itemBarraEstadaoParceiros"><a href="http://www.estadao.com.br/blogs/" target="_top" title="BLOGS">BLOGS</a></li><li class="itemBarraEstadaoParceiros"><a class="lastItemBarra" href="http://topicos.estadao.com.br/" target="_top" title="TÓPICOS">TÓPICOS</a></li></ul></nav>
+            <!-- Fim da barra Estadão Parceiros -->
+
+            <!-- Barra de Navegação Estadão Dados -->
+            <nav id="barraEstadaoDados">
+                <ul class="menuED">
+                    <li>
+                        <figure>
+                            <img id="img_estadao_dados" src="../base/imgs/logo_estadao_dados.png" height="30px" title="Estadão.com.br" align="middle">
+                        </figure>
+                    </li>
+                    <li id="aplicacoes">
+                        <a href="/html/basometro">Eleições 2012</a> <!-- Aplicação atual -->
+                        <ul> <!-- Outras aplicações do Estadão Dados -->
+                            <li><a href="/html/basometro">Basômetro</a></li>
+                            <li><a href="/html/biomas2012">Biomas2012</a></li>
+                            <li><a href="/html/religiao">Religiões</a></li>
+                            <li><a href="/html/coligacoes">Coligações</a></li>
+                            <li><a href="/html/intencaodevoto">Intenção de Voto</a></li>
+                            <li><a href="/html/ideb">IDEB</a></li>
+                            <li><a href="/html/saopauloquebalanca">São Paulo que balança</a></li>
+                            <li><a href="/html/eleicoes2012">Eleições 2012</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Fim da barra de navegação do Estadão Dados -->  
+            <br/>
+            <h1 id="titulo">Quem venceu as eleições</h1>
+        </header>
+        <section id="conteudoPrincipal">
+            <div id="noIeError">
+                <hr>
+                <h3><span id="origemDados">Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008.</span><br/>Clique nas barras para saber qual foi o resultado de cada sigla por Estado.</h3>
                 <span class='zoom' id="legendaDeCores">
                     <img width='350' height='60' src="imgs/legenda.png"/>
-                    <p></p>
                 </span>
                 <div id="alertar" onClick="esconderAlerta()"></div>
-                <div id="titulo"><span id="origemDados">Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008</span></div>
-                <nav id="estadaoDadosAbas">
+                <nav id="graficoAbas">
                     <ul>
                         <li><a class="selected" href="#" id="segturno">Prefeitos 2&ordm; turno</a></li>
                         <li><a href="#" id="prefeitos">Prefeitos 1&ordm; turno</a></li>
@@ -58,7 +106,50 @@
         <script type="text/javascript" src="js/map.js"></script>
         <script type="text/javascript" src="js/browser.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <footer><b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados</a></footer>
         <a href="https://github.com/estadaoDados/apuracao2012"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+        <aside id="leia_tambem">
+            <h1>Leia também</h1>
+            <a href="http://www.estadao.com.br/noticias/politica,psb-e-partido-que-mais-cresce-em-eleitores-e-prefeitos,942083,0.htm">PSB é partido que mais cresce em eleitores e prefeitos</a><br/>
+            <a href="http://www.estadao.com.br/noticias/politica,serra-tem-42-de-votos-na-zona-antipetista-haddad-tem-39-na-petista,942103,0.htm">Serra tem 42% de votos na zona antipetista; Haddad tem 39% na petista</a><br/>
+            <a href="http://blogs.estadao.com.br/vox-publica/2012/10/08/taxa-de-reeleicao-e-a-menor-desde-2000-e-cresce-a-renovacao/">Taxa de reeleição dos prefeitos é a menor da história</a><br/>
+            <a href="http://www.estadao.com.br/noticias/nacional,apos-dobrar-eleitorado-psb-tera-6-disputas-de-2-turno,942968,0.htm">Após dobrar eleitorado, PSB terá 6 disputas de 2º turno</a>
+
+
+        </aside>
+        <br/>
+        <aside id="fontes">
+            Fonte: <a href="http://www.tse.jus.br">TSE</a>
+        </aside>
+
+        <section id="social_sharing">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="estadaodados" data-lang="pt" data-hashtags="estadaodados">Tweetar</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <br>
+            <div id="fb-root" style="margin-top:5px;">
+                <script src="http://widgets.fbshare.me/files/fbshare.js"></script>
+            </div>
+        </section>
+
+        <footer>
+            José Roberto de Toledo, Daniel Bramatti, Diego Rabatone, Amanda Rossi e Vitor Baptista
+            <br/>
+            <b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados - AGPLv3</a>
+        </footer>
+
+        <!-- google analytics -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-166963-4']);
+             // _gaq.push(['_setDomainName', '.estadao.com.br']);
+                _gaq.push(['_setLocalGifPath', 'http://urchin.estadao.com.br/imagem/urchin.gif']);
+                _gaq.push(['_setLocalRemoteServerMode']);
+                _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');     ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:'   == document.location.protocol ? 'https://ssl'   : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
   </body>
 </html>
