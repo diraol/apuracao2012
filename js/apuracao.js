@@ -118,10 +118,6 @@ Apuracao = (function ($) {
                 })
     }
 
-    function mudamapa() {
-        return;
-    }
-
     return {
       initialize: initialize,
       draw: draw
