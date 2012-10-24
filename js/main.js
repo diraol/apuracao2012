@@ -5,7 +5,7 @@ $(document).ready(function () {
         return;
     }
 
-    Map.initialize($('#map'), 'imgs/brasil.svg');
+    Map.initialize('map', 'imgs/brasil.svg');
     Apuracao.initialize('apuracao');
 
     //Funçào que identifica clique nas abas

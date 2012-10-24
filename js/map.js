@@ -1,15 +1,25 @@
 Map = (function ($) {
-  function initialize(element, svgPath) {
-    _loadSvgInto(element, svgPath);
-  };
+    var container = undefined;
 
-  function _loadSvgInto(element, svgPath) {
-    d3.xml(svgPath, 'image/svg+xml', function (xml) {
-      element.html(xml.documentElement);
-    });
-  };
+    function initialize(containerId, svgPath) {
+        container = $('#'+containerId);
 
-  return {
-    'initialize': initialize
-  };
+        _loadSvgInto(container, svgPath);
+    };
+
+    function on(type, listener, capture) {
+        eventListeners.push(arguments);
+
+        return this;
+    }
+
+    function _loadSvgInto(container, svgPath) {
+        d3.xml(svgPath, 'image/svg+xml', function (xml) {
+            container.html(xml.documentElement);
+        });
+    };
+
+    return {
+        initialize: initialize
+    };
 })(jQuery);
