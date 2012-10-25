@@ -1,10 +1,11 @@
 #map {
-    float: right;
+  float: right;
 }
 #map path {
   fill: crimson;
+  fill-opacity: 0;
   stroke-width: 250px;
-  stroke: white;
+  stroke: black;
 }
 
 #map path:hover {

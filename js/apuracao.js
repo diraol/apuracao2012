@@ -1,10 +1,10 @@
 Apuracao = (function ($) {
-    var container = undefined,
-        barWidth = undefined,
+    var container,
+        barWidth,
         barHeight = 43,
-        barMargin = {top: 2, right: 14, bottom: 20, left: 55};
+        barMargin = {top: 2, right: 14, bottom: 20, left: 60};
 
-    var eventListeners = []
+    var eventListeners = [];
 
     function initialize(containerId) {
         container = document.getElementById(containerId);
@@ -21,68 +21,37 @@ Apuracao = (function ($) {
     }
 
     //Função que faz transição entre dois gráficos
-    function draw(projecao){
-        var novoJson = projecao+"_partidos";
+    function draw(data){
+        var chart = BulletChart.initialize()
+            .height(barHeight)
+            .width(barWidth)
+            .duration(1000)
+            .forceX(1250)
 
-        if (projecao=="votos") {
-            if (novoJson.indexOf("partidos") != -1) {
-                $("#origemDados").text("Veja quantos votos cada partido recebeu em 2012 e compare com 2008")
-            } else {
-                $("#origemDados").text('Veja quantos votos o ' + novoJson.split("_")[1].toUpperCase() + ' recebeu em 2012 e compare com 2008')
-            }
-        } else if (projecao=="eleitorado") {
-           if (novoJson.indexOf("partidos") != -1) {
-                $("#origemDados").text("Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008")
-            } else {
-                $("#origemDados").text('Veja quantos eleitores o ' + novoJson.split("_")[1].toUpperCase() + ' vai governar pós-2012 e compare a 2008')
-            }
-        } else if (projecao=="segturno") {
-           if (novoJson.indexOf("partidos") != -1) {
-                $("#origemDados").text("Veja quantos prefeitos cada partido elegeu no segundo turno em 2012")
-            } else {
-                $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012')
-            }
-        } else {
-            if (novoJson.indexOf("partidos") != -1) {
-                $("#origemDados").text("Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008")
-            } else {
-                $("#origemDados").text('Veja quantos prefeitos o ' + novoJson.split("_")[1].toUpperCase() + ' elegeu em 2012 e compare com 2008')
-            }
-        }
-
-        _geraGrafico(novoJson)
+        _update(chart, data);
     }
 
-    function _geraGrafico(nomeJson) {
-        var arquivo = "dados/"+nomeJson+".json"
-        d3.json(arquivo, function(data) {
-            if (data) {
-                var chart = BulletChart.initialize()
-                                       .height(barHeight)
-                                       .width(barWidth)
+    function _update(chart, data) {
+        var vis = _bars().data(data, function (d) { return d.title; })
+            .enter().append("svg")
+            .attr("class", "bullet")
+            .attr("width", barWidth)
+            .attr("height", barHeight)
+            .append("g")
+            .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
+            .call(chart);
 
-                var vis = _bars().data(data)
-                  .enter().append("svg")
-                    .attr("class", "bullet")
-                    .attr("width", barWidth)
-                    .attr("height", barHeight)
-                  .append("g")
-                    .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
-                    .call(chart);
+        _bars().data(data, function (d) { return d.title; }).call(chart);
 
-                var title = vis.append("g")
-                    .attr("text-anchor", "end")
-                    .attr("transform", "translate(-6," + (barHeight - barMargin.top - barMargin.bottom) + ")");
+        var title = vis.append("g")
+            .attr("text-anchor", "end")
+            .attr("transform", "translate(-6," + (barHeight - barMargin.top - barMargin.bottom) + ")");
 
-                title.append("text")
-                    .attr("class", "title")
-                    .text(function(d) { return d.title; });
+        title.append("text")
+            .attr("class", "title")
+            .text(function(d) { return d.title; });
 
-                _setupEventListeners();
-            } else {
-                alertar("Dados não disponíveis no momento")
-            }
-        })
+        _setupEventListeners();
     }
 
     function _bars() {
