@@ -9,8 +9,6 @@ Apuracao = (function ($) {
     function initialize(containerId) {
         container = document.getElementById(containerId);
         barWidth = container.offsetWidth - barMargin.left - barMargin.right;
-
-        $('#legendaDeCores').zoom();
     }
 
     function on(type, listener, capture) {
