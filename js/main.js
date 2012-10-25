@@ -35,18 +35,10 @@ Main = (function () {
     function _tabMessage(projecao) {
         var message;
 
-        switch (projecao) {
-            case "votos":
-                message = "Veja quantos votos cada partido recebeu em 2012 e compare com 2008";
-                break;
-            case "eleitorado":
-                message = "Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008";
-                break;
-            case "segturno":
-                message = "Veja quantos prefeitos cada partido elegeu no segundo turno em 2012";
-                break;
-            default:
-                message = "Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008";
+        if (projecao === "prefeitos") {
+            message = "Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008";
+        } else {
+            message = "Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008";
         }
 
         return message;
