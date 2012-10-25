@@ -13,7 +13,6 @@ var duracao = 1250,
     jsonAtual = "",
     pilhaJson = [],
     erroEncontrado = false,
-    mensagemErro = "",
     projecao = "segturno",
     baseEscala = 0
 
@@ -27,13 +26,26 @@ var Browser = {
     }
 }
 
+function verificaExisteDados(dados) {
+    var valor = 0
+    for (i=0 ; i<dados.length ; i++) {
+        if (dados[i].dados2008[0])
+            valor += dados[i].dados2008[0]
+        valor += dados[i].dados2012[0]
+    }
+
+    if (valor == 0) alertar("Ainda não existem prefeitos eleitos no segundo turno.")
+}
+
 //Função que gera um gráfico
 function geraGrafico(nomeJson) {
-    
+ 
     jsonAtual = nomeJson
     var arquivo = "dados/"+nomeJson+".json"
     d3.json("dados/"+nomeJson+".json", function(data) {
-        if (data) { 
+        if (data) {
+            if (nomeJson.indexOf("segturno") != -1)
+                verificaExisteDados(data)
             nv.addGraph(function() {
                 var chart = nv.models.bulletChart()
                     chart.height(barHeight)
@@ -90,8 +102,7 @@ function geraGrafico(nomeJson) {
         } else {
             erroEncontrado = true
             voltaGrafico()
-            mensagemErro = "Dados não disponíveis no momento"
-            alertar()
+            alertar("Dados não disponíveis no momento")
         }
     })
 }
@@ -187,7 +198,7 @@ function voltaGrafico(){
     }
 }
 
-function alertar() {
+function alertar(mensagemErro) {
     var div = document.getElementById("alertar")
     div.style.display = 'block'
     div.style.top = height/2+'px'
