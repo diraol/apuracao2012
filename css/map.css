@@ -1,14 +1,21 @@
 #map {
-  float: right;
+    padding: 10px;
+    float: right;
 }
+
+#map svg {
+    width: 458px;
+    height: 470px;
+}
+
 #map path {
-  fill: crimson;
-  fill-opacity: 0;
-  stroke-width: 250px;
-  stroke: black;
+    fill: crimson;
+    fill-opacity: 0;
+    stroke-width: 250px;
+    stroke: black;
 }
 
 #map path:hover {
-  stroke-width: 500px;
+    stroke-width: 500px;
 }
 

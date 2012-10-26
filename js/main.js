@@ -1,48 +1,52 @@
 Main = (function () {
-    function initialize() {
+    function initialize(dataPath) {
         Map.initialize('map', 'imgs/brasil.svg');
         Apuracao.initialize('apuracao');
 
-        _setupTabs();
-        $("#graficoAbas li:first").click();
+        _load(dataPath);
     }
 
-    function _setupTabs() {
-        $("#graficoAbas li").click(function() {
-            esconderAlerta();
-            _loadJson(this.firstChild.id);
-            $("#origemDados").text(_tabMessage(this.firstChild.id));
-            $("#graficoAbas a.selected").removeClass("selected");
-            $(this.firstChild).addClass("selected");
+    function _load(path) {
+        $.getJSON(path, function (data) {
+            _setupTabs(data);
+            $("#graficoAbas p:first").click();
         });
     }
 
-    function _loadJson(jsonId) {
-        var jsonPath = "dados/"+jsonId+".json";
-
-        $.getJSON(jsonPath, function (data) {
-            var maxValue = _maxValue(data);
-
-            Apuracao.on('click', function (d) {
-                var partido = d.title;
-                Map.choropleth(data[partido], maxValue);
-            });
-
-            Apuracao.draw(_formatDataForBulletGraph(data));
-        });
+    function _setupTabs(data) {
+       $("#graficoAbas p").click(function() {
+           esconderAlerta();
+           $("#graficoAbas p.selected").removeClass("selected");
+           $(this).addClass("selected");
+           _update(data, this.id);
+       });
     }
 
-    function _tabMessage(projecao) {
-        var message;
+    function _update(data, selected) {
+        var maxValue = _maxValue(data[selected]),
+            scale;
 
-        if (projecao === "prefeitos") {
-            message = "Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008";
+        // TODO: Tire esses magic numbers. Calcule a partir dos dados.
+        if (selected === "prefeitos") {
+            scale = 1300;
         } else {
-            message = "Veja quantos eleitores cada partido vai governar pós-2012 e compare a 2008";
+            scale = 30000000;
         }
 
-        return message;
-    };
+        Apuracao.draw(_formatDataForBulletGraph(data[selected]), scale);
+        Apuracao.on('click', function (d) {
+            var partido = d.title;
+
+            $("svg.bullet.selected").attr("class", "bullet");
+            $(this).attr("class", "bullet selected");
+
+            Map.choropleth(data[selected][partido], maxValue);
+            $('#dashboard-header h2').text(partido);
+            _updateDashboard(data, partido)
+        });
+
+        _updateMap(data);
+    }
 
     function _maxValue(data) {
         var values = [];
@@ -56,6 +60,12 @@ Main = (function () {
         }
 
         return d3.max(values);
+    }
+
+    function _updateDashboard(data, partido) {
+        for (var i in data) {
+            $('#dashboard-bar #'+i+' em').text(_sumValues(data[i][partido]));
+        }
     }
 
     function _formatDataForBulletGraph(data) {
@@ -75,6 +85,36 @@ Main = (function () {
         }
 
         return barsData;
+    }
+
+    function _updateMap(data) {
+       if ($("svg.bullet.selected").length === 0) {
+            $('#dashboard-header h2').text(data["total"].title);
+            $('#dashboard-bar #prefeitos em').text(data["total"].prefeitos);
+            $('#dashboard-bar #eleitorado em').text(data["total"].eleitorado);
+       } else {
+           _clickOnSelectedBullet();
+       }
+    }
+
+    function _clickOnSelectedBullet() {
+        var evt = document.createEvent("SVGEvents"),
+            bullet = document.getElementsByClassName("bullet selected")[0];
+
+        if (bullet) {
+            evt.initEvent("click",true,true);
+            bullet.dispatchEvent(evt);
+        }
+    }
+
+    function _sumValues(data) {
+        var sumValues = [];
+
+        for (var i in data) {
+            sumValues = sumValues.concat([data[i][1]])
+        }
+
+        return d3.sum(sumValues);
     }
 
     function _sumArrays(values) {
@@ -104,6 +144,6 @@ $(document).ready(function () {
         return;
     }
 
-    Main.initialize();
+    Main.initialize("dados/prefeitos_e_eleitorado.json");
 });
 

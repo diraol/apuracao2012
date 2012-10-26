@@ -82,14 +82,24 @@
         <section id="conteudoPrincipal">
             <div id="noIeError">
                 <hr>
-                <h3><span id="origemDados">Veja quantos prefeitos cada partido elegeu em 2012 e compare com 2008.</span><br/>Clique nas barras para saber qual foi o resultado de cada sigla por Estado.</h3>
-                <div id="alertar" onClick="esconderAlerta()"></div>
-                <nav id="graficoAbas">
-                    <ul>
-                        <li><a class="selected" href="#" id="prefeitos">Prefeitos eleitos</a></li>
-                        <li><a href="#" id="eleitorado">Eleitorado a governar</a></li>
-                    </ul>
-                </nav>
+                <div id="dashboard">
+                    <div id="dashboard-header">
+                        <h2></h2>
+                    </div>
+                    <div id="dashboard-bar">
+                        <nav id="graficoAbas">
+                            <p id="prefeitos" class="aba">
+                                <img src="imgs/people.png">
+                                <em></em>
+                            </p>
+                            <p id="eleitorado" class="aba">
+                                <img src="imgs/people.png">
+                                <em></em>
+                            </p>
+                        </nav>
+                    </div>
+                    <div id="alertar" onClick="esconderAlerta()"></div>
+                </div>
                 <div id="letreiro"></div>
                 <div id="apuracao"></div>
                 <div id="map"></div>
@@ -102,34 +112,36 @@
         <script type="text/javascript" src="js/browser.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
         <a href="https://github.com/estadaoDados/apuracao2012"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-        <aside id="leia_tambem">
-            <h1>Leia também</h1>
-            <a href="http://www.estadao.com.br/noticias/politica,psb-e-partido-que-mais-cresce-em-eleitores-e-prefeitos,942083,0.htm">PSB é partido que mais cresce em eleitores e prefeitos</a><br/>
-            <a href="http://www.estadao.com.br/noticias/politica,serra-tem-42-de-votos-na-zona-antipetista-haddad-tem-39-na-petista,942103,0.htm">Serra tem 42% de votos na zona antipetista; Haddad tem 39% na petista</a><br/>
-            <a href="http://blogs.estadao.com.br/vox-publica/2012/10/08/taxa-de-reeleicao-e-a-menor-desde-2000-e-cresce-a-renovacao/">Taxa de reeleição dos prefeitos é a menor da história</a><br/>
-            <a href="http://www.estadao.com.br/noticias/nacional,apos-dobrar-eleitorado-psb-tera-6-disputas-de-2-turno,942968,0.htm">Após dobrar eleitorado, PSB terá 6 disputas de 2º turno</a>
+        <div class="footer">
+            <aside id="leia_tambem">
+                <h1>Leia também</h1>
+                <a href="http://www.estadao.com.br/noticias/politica,psb-e-partido-que-mais-cresce-em-eleitores-e-prefeitos,942083,0.htm">PSB é partido que mais cresce em eleitores e prefeitos</a><br/>
+                <a href="http://www.estadao.com.br/noticias/politica,serra-tem-42-de-votos-na-zona-antipetista-haddad-tem-39-na-petista,942103,0.htm">Serra tem 42% de votos na zona antipetista; Haddad tem 39% na petista</a><br/>
+                <a href="http://blogs.estadao.com.br/vox-publica/2012/10/08/taxa-de-reeleicao-e-a-menor-desde-2000-e-cresce-a-renovacao/">Taxa de reeleição dos prefeitos é a menor da história</a><br/>
+                <a href="http://www.estadao.com.br/noticias/nacional,apos-dobrar-eleitorado-psb-tera-6-disputas-de-2-turno,942968,0.htm">Após dobrar eleitorado, PSB terá 6 disputas de 2º turno</a>
 
 
-        </aside>
-        <br/>
-        <aside id="fontes">
-            Fonte: <a href="http://www.tse.jus.br">TSE</a>
-        </aside>
-
-        <section id="social_sharing">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="estadaodados" data-lang="pt" data-hashtags="estadaodados">Tweetar</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            <br>
-            <div id="fb-root" style="margin-top:5px;">
-                <script src="http://widgets.fbshare.me/files/fbshare.js"></script>
-            </div>
-        </section>
-
-        <footer>
-            José Roberto de Toledo, Daniel Bramatti, Diego Rabatone, Amanda Rossi e Vitor Baptista
+            </aside>
             <br/>
-            <b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados - AGPLv3</a>
-        </footer>
+            <aside id="fontes">
+                Fonte: <a href="http://www.tse.jus.br">TSE</a>
+            </aside>
+
+            <section id="social_sharing">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-via="estadaodados" data-lang="pt" data-hashtags="estadaodados">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <br>
+                <div id="fb-root" style="margin-top:5px;">
+                    <script src="http://widgets.fbshare.me/files/fbshare.js"></script>
+                </div>
+            </section>
+
+            <footer>
+                José Roberto de Toledo, Daniel Bramatti, Diego Rabatone, Amanda Rossi e Vitor Baptista
+                <br/>
+                <b>Grupo Estado</b> • Copyright © 2007-2012 • <a href="http://www.gnu.org/licenses/agpl-3.0.html">Alguns direitos reservados - AGPLv3</a>
+            </footer>
+        </div>
 
         <!-- google analytics -->
         <script type="text/javascript">

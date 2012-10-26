@@ -4,27 +4,23 @@ Apuracao = (function ($) {
         barHeight = 43,
         barMargin = {top: 2, right: 14, bottom: 20, left: 60};
 
-    var eventListeners = [];
-
     function initialize(containerId) {
         container = document.getElementById(containerId);
         barWidth = container.offsetWidth - barMargin.left - barMargin.right;
     }
 
     function on(type, listener, capture) {
-        eventListeners.push(arguments);
-        _setupEventListeners();
+        _bars().on(type, listener, capture);
 
         return this;
     }
 
-    //Função que faz transição entre dois gráficos
-    function draw(data){
+    function draw(data, forceX){
         var chart = BulletChart.initialize()
             .height(barHeight)
             .width(barWidth)
-            .duration(1000)
-            .forceX(1250)
+            .duration(500)
+            .forceX(forceX)
 
         _update(chart, data);
     }
@@ -48,24 +44,10 @@ Apuracao = (function ($) {
         title.append("text")
             .attr("class", "title")
             .text(function(d) { return d.title; });
-
-        _setupEventListeners();
     }
 
     function _bars() {
         return d3.select(container).selectAll("svg.bullet");
-    }
-
-    function _setupEventListeners() {
-        for (var i in eventListeners) {
-            var type = eventListeners[i][0],
-                listener = eventListeners[i][1],
-                capture = eventListeners[i][2];
-
-            _bars().on(type, listener, capture);
-        }
-
-        return _bars();
     }
 
     return {
