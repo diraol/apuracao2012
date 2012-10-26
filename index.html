@@ -77,25 +77,36 @@
             </nav>
             <!-- Fim da barra de navegação do Estadão Dados -->  
             <br/>
-            <h1 id="titulo">Quem venceu as eleições</h1>
         </header>
         <section id="conteudoPrincipal">
             <div id="noIeError">
-                <hr>
                 <div id="dashboard">
                     <div id="dashboard-header">
-                        <h2></h2>
+                        <h2>Resultado das eleições de prefeito: <span
+                                id="nome-partido"></span></h2>
                     </div>
                     <div id="dashboard-bar">
                         <nav id="graficoAbas">
-                            <p id="prefeitos" class="aba">
-                                <img src="imgs/people.png">
-                                <em></em>
-                            </p>
-                            <p id="eleitorado" class="aba">
-                                <img src="imgs/people.png">
-                                <em></em>
-                            </p>
+                            <section id="prefeitos">
+                                <p>Prefeitos Eleitos</p>
+                                <em>3123</em>
+                            </section>
+                            <section id="eleitorado">
+                                <p>Eleitorado a Governar</p>
+                                <em>3123</em>
+                            </section>
+                            <section id="rendamedia">
+                                <p>Renda Média</p>
+                                <em>R$ 1.894</em>
+                            </section>
+                            <section id="bolsafamilia">
+                                <p>Cobertura Média do Bolsa Família</p>
+                                <em>25%</em>
+                            </section>
+                            <section id="populacao">
+                                <p>População Média</p>
+                                <em>103,321</em>
+                            </section>
                         </nav>
                     </div>
                     <div id="alertar" onClick="esconderAlerta()"></div>

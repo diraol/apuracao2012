@@ -1,8 +1,8 @@
 Apuracao = (function ($) {
     var container,
         barWidth,
-        barHeight = 43,
-        barMargin = {top: 2, right: 14, bottom: 20, left: 60};
+        barHeight = 21,
+        barMargin = {top: 2, right: 14, bottom: 5, left: 50};
 
     function initialize(containerId) {
         container = document.getElementById(containerId);
@@ -35,7 +35,7 @@ Apuracao = (function ($) {
             .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
             .call(chart);
 
-        _bars().data(data, function (d) { return d.title; }).sort(function(a,b) {  return b.measures[0] - a.measures[0]; }).call(chart);
+        _bars().data(data, function (d) { return d.title; }).sort(function(a,b) {  return b.ranges[0] - a.ranges[0]; }).call(chart);
 
         var title = vis.append("g")
             .attr("text-anchor", "end")

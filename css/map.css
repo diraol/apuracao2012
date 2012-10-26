@@ -9,13 +9,8 @@
 }
 
 #map path {
-    fill: crimson;
+    fill: #FF5900;
     fill-opacity: 0;
     stroke-width: 250px;
     stroke: black;
 }
-
-#map path:hover {
-    stroke-width: 500px;
-}
-

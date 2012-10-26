@@ -1,45 +1,70 @@
 #dashboard {
-    background-color: #E89B0C;
-    font-color: white;
+    color: black;
+    margin-bottom: 10px;
+    max-width: 100%;
 }
 
-#dashboard-header {
-    border-bottom: 1px solid white;
-}
-
-#dashboard-bar .aba {
+#dashboard-bar section {
     display: inline-block;
     text-align: center;
     cursor: pointer;
 }
 
-#dashboard-bar .aba:hover {
-    background-color: crimson;
+#dashboard-bar #rendamedia, #dashboard-bar #populacao {
+    width: 18%;
+}
+
+#dashboard-bar section {
+    font-weight: bold;
+}
+
+#dashboard-bar section em {
+    font-size: 34px;
+    font-style: normal;
+}
+
+#dashboard-bar section p {
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 10px;
 }
 
 #dashboard-bar .selected {
-    background-color: red;
+    color: #FF5900;
+}
+
+#dashboard-bar section:hover {
+    color: #ddd;
 }
 
 #dashboard-bar nav p img {
+    margin: auto;
     display: block;
 }
 
 #dashboard-header h2 {
+    font-size: 32px;
     font-weight: bold;
+    padding-left: 15px;
+    padding-top: 1px;
+    color: black;
+}
+
+#dashboard-header h2 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#nome-partido {
+    color: #FF5900;
 }
 
 .menuED li.oculto {
     display: none;
 }
 
-.retornaBackground {
-    fill: none;
-    pointer-events: all;
-    width: 956px;
-}
 #conteudoPrincipal {
-    width: 956px;
+    width: 980px;
     display: block;
     font-family: arial;
     margin-left: 1px;
@@ -110,7 +135,6 @@
 #apuracao,
 #apuracao #prefeitos_partidos {
     width: 478px;
-    margin: 0 !important;
     float: left;
 }
 
@@ -122,17 +146,24 @@
     border-top: 0;
 }
 
-.bullet { font: 10px sans-serif; }
+.bullet { font: 10px sans-serif; margin-bottom: 4px; }
 .bullet .marker { stroke: #000; stroke-width: 2px; }
 .bullet .tick line { stroke: #666; stroke-width: .5px; }
-.bullet .range.s0 { fill: #eee; }
+.bullet .range.s0 { fill: #FF5900; }
 .bullet .range.s1 { fill: #ddd; }
 .bullet .range.s2 { fill: #ccc; }
-.bullet .measure.s0 { fill: #E89B0C;} /* lightsteelblue; } */
+.bullet .measure.s0 { fill: #ccc;} /* lightsteelblue; } */
 .bullet .measure.s1 { fill: steelblue; }
-.bullet .title { font-size: 14px; font-weight: bold; }
+.bullet .title { font-size: 11px; font-weight: bold; }
 .bullet .subtitle { fill: #999; }
 .bullet .marker, .bullet .tick { display: none; }
+.bullet {
+    fill-opacity: 0.5;
+    cursor: pointer;
+}
+.bullet:hover, .bullet.selected {
+    fill-opacity: 1;
+}
 
 /********************
  * SVG CSS

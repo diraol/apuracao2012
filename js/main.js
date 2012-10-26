@@ -9,14 +9,14 @@ Main = (function () {
     function _load(path) {
         $.getJSON(path, function (data) {
             _setupTabs(data);
-            $("#graficoAbas p:first").click();
+            $("#graficoAbas section:first").click();
         });
     }
 
     function _setupTabs(data) {
-       $("#graficoAbas p").click(function() {
+       $("#graficoAbas section").click(function() {
            esconderAlerta();
-           $("#graficoAbas p.selected").removeClass("selected");
+           $("#graficoAbas .selected").removeClass("selected");
            $(this).addClass("selected");
            _update(data, this.id);
        });
@@ -27,10 +27,13 @@ Main = (function () {
             scale;
 
         // TODO: Tire esses magic numbers. Calcule a partir dos dados.
-        if (selected === "prefeitos") {
-            scale = 1300;
-        } else {
-            scale = 30000000;
+        switch (selected) {
+            case "prefeitos":
+                scale = 1200;
+                break;
+            case "eleitorado":
+                scale = 30000000;
+                break;
         }
 
         Apuracao.draw(_formatDataForBulletGraph(data[selected]), scale);
@@ -41,7 +44,7 @@ Main = (function () {
             $(this).attr("class", "bullet selected");
 
             Map.choropleth(data[selected][partido], maxValue);
-            $('#dashboard-header h2').text(partido);
+            $('#nome-partido').text(partido);
             _updateDashboard(data, partido)
         });
 
@@ -89,7 +92,7 @@ Main = (function () {
 
     function _updateMap(data) {
        if ($("svg.bullet.selected").length === 0) {
-            $('#dashboard-header h2').text(data["total"].title);
+            $('#nome-partido').text(data["total"].title);
             $('#dashboard-bar #prefeitos em').text(data["total"].prefeitos);
             $('#dashboard-bar #eleitorado em').text(data["total"].eleitorado);
        } else {
