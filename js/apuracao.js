@@ -35,7 +35,7 @@ Apuracao = (function ($) {
             .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
             .call(chart);
 
-        _bars().data(data, function (d) { return d.title; }).call(chart);
+        _bars().data(data, function (d) { return d.title; }).sort(function(a,b) {  return b.measures[0] - a.measures[0]; }).call(chart);
 
         var title = vis.append("g")
             .attr("text-anchor", "end")
