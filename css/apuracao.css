@@ -4,29 +4,71 @@
     max-width: 100%;
 }
 
-#dashboard-bar section p {
-    margin-bottom: 2px;
+#dashboard-header h2 {
+    font-size: 32px;
+    color: black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#nome-partido {
     font-weight: bold;
-    font-size: 10px;
-    text-transform: uppercase;
+    color: #FF5900;
+}
+
+#dashboard-bar nav {
+    padding-left: 20px;
 }
 
 #dashboard-bar section {
     display: inline-block;
-    text-align: center;
     font-weight: bold;
-    padding-left: 20px;
+    width: 22%;
 }
 
-#dashboard-bar section em {
-    font-size: 34px;
-    font-style: normal;
-    padding-left: 5px;
-    padding-right: 4px;
+#dashboard-bar section p {
+    margin-bottom: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#dashboard-bar .valor-2008,
+#dashboard-bar .valor-2012 {
+    width: 45%;
+    font-size: 30px;
+    display: inline-block;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#dashboard-bar .valor-2008 {
+    color: #2F7DA1;
+    border-right: 1px solid grey;
+    padding-right: 10px;
+    text-align: right;
+}
+
+#dashboard-bar .valor-2012 {
+    color: #FF5900;
+    padding-left: 7px;
+    text-align: left;
+}
+
+.bullet,
+#dashboard-bar section {
+    opacity: 0.5;
+}
+
+#dashboard-bar .selected,
+#dashboard-bar section:hover,
+.bullet.selected,
+.bullet:hover {
+    opacity: 1;
+    cursor: pointer;
 }
 
 .legendas ul {
-    margin-top: 5px;
+    margin-top: 20px;
     margin-bottom: 5px;
     padding: 0px;
 }
@@ -50,45 +92,6 @@
 
 .cor-2012 {
     background-color: #FF5900;
-}
-
-#dashboard-bar .valor-2008 {
-    color: #2F7DA1;
-    border-right: 1px solid grey;
-}
-
-#dashboard-bar .valor-2012 {
-    color: #FF5900;
-}
-
-#dashboard-bar .selected,
-#dashboard-bar section:hover,
-.bullet.selected,
-.bullet:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
-.bullet,
-#dashboard-bar section {
-    opacity: 0.5;
-}
-
-#dashboard-bar nav p img {
-    margin: auto;
-    display: block;
-}
-
-#dashboard-header h2 {
-    font-size: 32px;
-    color: black;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-
-#nome-partido {
-    font-weight: bold;
-    color: #FF5900;
 }
 
 .menuED li.oculto {

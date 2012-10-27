@@ -64,13 +64,6 @@ Main = (function () {
         return d3.max(values);
     }
 
-    function _updateDashboard(data, partido) {
-        for (var i in data) {
-            $('#dashboard-bar #'+i+' .valor-2008').text(_sumValues(data[i][partido], 0));
-            $('#dashboard-bar #'+i+' .valor-2012').text(_sumValues(data[i][partido], 1));
-        }
-    }
-
     function _formatDataForBulletGraph(data) {
         var barsData = []
 
@@ -90,16 +83,38 @@ Main = (function () {
         return barsData;
     }
 
+    function _updateDashboard(data, partido) {
+        for (var i in data) {
+            $('#dashboard-bar #'+i+' .valor-2008').text(_formatFor(i, _sumValues(data[i][partido], 0)));
+            $('#dashboard-bar #'+i+' .valor-2012').text(_formatFor(i, _sumValues(data[i][partido], 1)));
+        }
+    }
+
     function _updateMap(data) {
        if ($("svg.bullet.selected").length === 0) {
             $('#nome-partido').text(data["total"].title);
-            $('#dashboard-bar #prefeitos .valor-2008').text(data["total"].prefeitos[0]);
-            $('#dashboard-bar #prefeitos .valor-2012').text(data["total"].prefeitos[1]);
-            $('#dashboard-bar #eleitorado .valor-2008').text(data["total"].eleitorado[0]);
-            $('#dashboard-bar #eleitorado .valor-2012').text(data["total"].eleitorado[1]);
+            $('#dashboard-bar #prefeitos .valor-2008').text(_formatFor("prefeitos", data["total"].prefeitos[0]));
+            $('#dashboard-bar #prefeitos .valor-2012').text(_formatFor("prefeitos", data["total"].prefeitos[1]));
+            $('#dashboard-bar #eleitorado .valor-2008').text(_formatFor("eleitorado", data["total"].eleitorado[0]));
+            $('#dashboard-bar #eleitorado .valor-2012').text(_formatFor("eleitorado", data["total"].eleitorado[1]));
        } else {
            _clickOnSelectedBullet();
        }
+    }
+
+    function _formatFor(type, value) {
+        var result;
+
+        switch (type) {
+            case "prefeitos":
+                result = value;
+                break;
+            case "eleitorado":
+                result = (value / 1000000).toFixed(1);
+                break;
+        }
+
+        return _formatNumber(result);
     }
 
     function _clickOnSelectedBullet() {
@@ -135,6 +150,21 @@ Main = (function () {
         }
 
         return result;
+    }
+
+    // http://stackoverflow.com/questions/8741696/simple-way-to-format-a-number-in-jquery
+    function _formatNumber(numberString) {
+        numberString += '';
+        var x = numberString.split('.'),
+            x1 = x[0],
+            x2 = x.length > 1 ? ',' + x[1] : '',
+            rgxp = /(\d+)(\d{3})/;
+
+        while (rgxp.test(x1)) {
+            x1 = x1.replace(rgxp, '$1' + '.' + '$2');
+        }
+
+        return x1 + x2;
     }
 
     return {
