@@ -1,4 +1,6 @@
 Main = (function () {
+    var mapChoroplethRanges = [5, 10, 15, 20];
+
     function initialize(dataPath) {
         Map.initialize('map', 'imgs/brasil.svg');
         Apuracao.initialize('apuracao');
@@ -38,12 +40,13 @@ Main = (function () {
 
         Apuracao.draw(_formatDataForBulletGraph(data[selected]), scale);
         Apuracao.on('click', function (d) {
-            var partido = d.title;
+            var partido = d.title,
+                dataPartido = data[selected][partido];
 
             $("svg.bullet.selected").attr("class", "bullet");
             $(this).attr("class", "bullet selected");
 
-            Map.choropleth(data[selected][partido], maxValue);
+            Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges);
             $('#nome-partido').text(partido);
             _updateDashboard(data, partido)
         });
@@ -51,15 +54,11 @@ Main = (function () {
         _updateMap(data);
     }
 
-    function _maxValue(data) {
+    function _maxValue(data, index) {
         var values = [];
 
         for (var i in data) {
-            var partyValues = [];
-            for (var j in data[i]) {
-                partyValues = partyValues.concat([data[i][j][1]])
-            }
-            values = values.concat(partyValues);
+            values = values.concat([data[i][index]]);
         }
 
         return d3.max(values);

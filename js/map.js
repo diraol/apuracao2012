@@ -7,20 +7,22 @@ Map = (function ($) {
         _loadSvgInto(container, svgPath);
     };
 
-    function choropleth(values, maxValue) {
-        var scale = d3.scale.linear()
-                            .clamp(true)
-                            .domain([0, maxValue]);
+    function choropleth(values, maxValue, range) {
+        var scale = d3.scale.quantize()
+                            .domain([0, maxValue])
+                            .range(range);
+            maxValueRange = range[range.length - 1];
 
         _regions().transition()
           .style('fill-opacity', function () {
-              var value = 0;
+              var value = values[this.id],
+                  result = 0;
 
-              if (values[this.id] !== undefined) {
-                value = scale(values[this.id][1]);
+              if (value && value[1] !== 0) {
+                  result = scale(value[1]) / maxValueRange;
               }
 
-              return value;
+              return result;
           });
     };
 
