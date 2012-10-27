@@ -4,37 +4,74 @@
     max-width: 100%;
 }
 
+#dashboard-bar section p {
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
 #dashboard-bar section {
     display: inline-block;
     text-align: center;
-    cursor: pointer;
-}
-
-#dashboard-bar #rendamedia, #dashboard-bar #populacao {
-    width: 18%;
-}
-
-#dashboard-bar section {
     font-weight: bold;
+    padding-left: 20px;
 }
 
 #dashboard-bar section em {
     font-size: 34px;
     font-style: normal;
+    padding-left: 5px;
+    padding-right: 4px;
 }
 
-#dashboard-bar section p {
-    margin-bottom: 0px;
+.legendas ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+.legendas li {
+    display: inline;
+    list-style-type: none;
+    padding-left: 10px;
+    font-style: italic;
     font-weight: bold;
-    font-size: 10px;
 }
 
-#dashboard-bar .selected {
+.legendas img {
+    width: 20px;
+    height: 10px;
+}
+
+.cor-2008 {
+    background-color: #2F7DA1;
+}
+
+.cor-2012 {
+    background-color: #FF5900;
+}
+
+#dashboard-bar .valor-2008 {
+    color: #2F7DA1;
+    border-right: 1px solid grey;
+}
+
+#dashboard-bar .valor-2012 {
     color: #FF5900;
 }
 
-#dashboard-bar section:hover {
-    color: #ddd;
+#dashboard-bar .selected,
+#dashboard-bar section:hover,
+.bullet.selected,
+.bullet:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.bullet,
+#dashboard-bar section {
+    opacity: 0.5;
 }
 
 #dashboard-bar nav p img {
@@ -44,18 +81,13 @@
 
 #dashboard-header h2 {
     font-size: 32px;
-    font-weight: bold;
-    padding-left: 15px;
-    padding-top: 1px;
     color: black;
-}
-
-#dashboard-header h2 {
     margin-bottom: 10px;
     margin-top: 10px;
 }
 
 #nome-partido {
+    font-weight: bold;
     color: #FF5900;
 }
 
@@ -152,18 +184,11 @@
 .bullet .range.s0 { fill: #FF5900; }
 .bullet .range.s1 { fill: #ddd; }
 .bullet .range.s2 { fill: #ccc; }
-.bullet .measure.s0 { fill: #ccc;} /* lightsteelblue; } */
+.bullet .measure.s0 { fill: #2F7DA1;} /* lightsteelblue; } */
 .bullet .measure.s1 { fill: steelblue; }
 .bullet .title { font-size: 11px; font-weight: bold; }
 .bullet .subtitle { fill: #999; }
 .bullet .marker, .bullet .tick { display: none; }
-.bullet {
-    fill-opacity: 0.5;
-    cursor: pointer;
-}
-.bullet:hover, .bullet.selected {
-    fill-opacity: 1;
-}
 
 /********************
  * SVG CSS

@@ -66,7 +66,8 @@ Main = (function () {
 
     function _updateDashboard(data, partido) {
         for (var i in data) {
-            $('#dashboard-bar #'+i+' em').text(_sumValues(data[i][partido]));
+            $('#dashboard-bar #'+i+' .valor-2008').text(_sumValues(data[i][partido], 0));
+            $('#dashboard-bar #'+i+' .valor-2012').text(_sumValues(data[i][partido], 1));
         }
     }
 
@@ -92,8 +93,10 @@ Main = (function () {
     function _updateMap(data) {
        if ($("svg.bullet.selected").length === 0) {
             $('#nome-partido').text(data["total"].title);
-            $('#dashboard-bar #prefeitos em').text(data["total"].prefeitos);
-            $('#dashboard-bar #eleitorado em').text(data["total"].eleitorado);
+            $('#dashboard-bar #prefeitos .valor-2008').text(data["total"].prefeitos[0]);
+            $('#dashboard-bar #prefeitos .valor-2012').text(data["total"].prefeitos[1]);
+            $('#dashboard-bar #eleitorado .valor-2008').text(data["total"].eleitorado[0]);
+            $('#dashboard-bar #eleitorado .valor-2012').text(data["total"].eleitorado[1]);
        } else {
            _clickOnSelectedBullet();
        }
@@ -109,11 +112,11 @@ Main = (function () {
         }
     }
 
-    function _sumValues(data) {
+    function _sumValues(data, index) {
         var sumValues = [];
 
         for (var i in data) {
-            sumValues = sumValues.concat([data[i][1]])
+            sumValues = sumValues.concat([data[i][index]])
         }
 
         return d3.sum(sumValues);

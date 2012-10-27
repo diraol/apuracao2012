@@ -1,8 +1,8 @@
 {
     "total": {
         "title": "BRASIL",
-        "prefeitos": 5568,
-        "eleitorado": 138796691
+        "prefeitos": [5568, 5560],
+        "eleitorado": [10324512, 138796691]
     },
     "prefeitos": {
         "DEM": {
