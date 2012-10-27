@@ -4,8 +4,8 @@
 }
 
 #map svg {
-    width: 458px;
-    height: 470px;
+    width: 482px;
+    height: 495px;
 }
 
 #map path {
@@ -13,4 +13,9 @@
     fill-opacity: 0;
     stroke-width: 250px;
     stroke: black;
+}
+
+#map text {
+    font-size: 4000px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }

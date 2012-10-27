@@ -23,6 +23,14 @@ Map = (function ($) {
               }
 
               return result;
+          }).each(function () {
+              var value;
+
+              if (values[this.id] && values[this.id][1] !== 0) {
+                  value = formatNumber(values[this.id][1]);
+              }
+
+              d3.select(container).select("#legenda-"+this.id).text(value);
           });
     };
 

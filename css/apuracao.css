@@ -23,7 +23,7 @@
 #dashboard-bar section {
     display: inline-block;
     font-weight: bold;
-    width: 22%;
+    width: 25%;
 }
 
 #dashboard-bar section p {
@@ -56,7 +56,7 @@
 
 .bullet,
 #dashboard-bar section {
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 #dashboard-bar .selected,
