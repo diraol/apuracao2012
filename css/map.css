@@ -16,6 +16,12 @@
 }
 
 #map text {
-    font-size: 4000px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 5000px;
+    font-family: Arial;
+}
+
+#map line {
+    stroke: black;
+    stroke-width: 500px;
+
 }
