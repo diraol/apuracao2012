@@ -57,7 +57,7 @@ Main = (function () {
             if (partidoId === "") { return; }
             if (typeof _gaq !== 'undefined') {
                 _gaq.push(['_trackPageview'], window.location.pathname + window.location.hash);
-                _gaq.push(['b._trackPageview'], window.location.pathname + window.location.hash);
+                _gaq.push(['estadaoDados._trackPageview'], window.location.pathname + window.location.hash);
             }
 
             $("svg.bullet.selected").attr("class", "bullet");

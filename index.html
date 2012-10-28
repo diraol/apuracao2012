@@ -172,7 +172,12 @@
                 _gaq.push(['_setLocalGifPath', 'http://urchin.estadao.com.br/imagem/urchin.gif']);
                 _gaq.push(['_setLocalRemoteServerMode']);
                 _gaq.push(['_trackPageview']);
-                _gaq.push(['b._setAccount', 'UA-35930000-1']);
+
+            _gaq.push(function () {
+                _gaq._createAsyncTracker('UA-35930000-1', 'estadaoDados');
+            });
+            _gaq.push(['estadaoDados._setDomainName', 'dados.estadao.com.br']);
+            _gaq.push(['estadaoDados._trackPageview']);
 
             (function() {
                 var ga = document.createElement('script');     ga.type = 'text/javascript'; ga.async = true;
