@@ -12,6 +12,7 @@ Main = (function () {
         $.getJSON(path, function (data) {
             _setupTabs(data);
             $("#graficoAbas section:first").click();
+            window.onhashchange();
         });
     }
 
@@ -21,6 +22,7 @@ Main = (function () {
            $("#graficoAbas .selected").removeClass("selected");
            $(this).addClass("selected");
            _update(data, this.id);
+           window.onhashchange();
        });
     }
 
@@ -47,17 +49,28 @@ Main = (function () {
                 break;
         }
 
-        Apuracao.draw(_formatDataForBulletGraph(data, selected), scale);
-        Apuracao.on('click', function (d) {
-            var partido = d.title,
+        window.onhashchange = function () {
+            var partidoId = window.location.hash.replace(/!/, ""),
+                partido = partidoId.substr(1).replace(/-/g, " "),
                 dataPartido = data[selected][partido];
 
+            if (partidoId === "") { return; }
+            if (typeof _gaq !== 'undefined') {
+                _gaq.push(['_trackPageview'], window.location.pathname + window.location.hash);
+                _gaq.push(['b._trackPageview'], window.location.pathname + window.location.hash);
+            }
+
             $("svg.bullet.selected").attr("class", "bullet");
-            $(this).attr("class", "bullet selected");
+            $(partidoId).attr("class", "bullet selected");
 
             Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges);
             $('#nome-partido').text(partido);
             _updateDashboard(data, partido)
+        }
+
+        Apuracao.draw(_formatDataForBulletGraph(data, selected), scale);
+        Apuracao.on('click', function (d) {
+           window.location.hash = "!" + d.title.replace(/ /g, "-");
         });
 
         _updateMap(data);
@@ -141,7 +154,7 @@ Main = (function () {
             $('#dashboard-bar #bolsafamilia .valor-2012').text(_formatFor("bolsafamilia", data["total"].bolsafamilia[1]));
             $('#dashboard-bar #populacaomedia .valor-2012').text(_formatFor("populacaomedia", data["total"].populacaomedia[1]));
        } else {
-           _clickOnSelectedBullet();
+           _clickOn(document.getElementsByClassName("bullet selected")[0]);
        }
     }
 
@@ -185,9 +198,8 @@ Main = (function () {
         return result;
     }
 
-    function _clickOnSelectedBullet() {
-        var evt = document.createEvent("SVGEvents"),
-            bullet = document.getElementsByClassName("bullet selected")[0];
+    function _clickOn(bullet) {
+        var evt = document.createEvent("SVGEvents");
 
         if (bullet) {
             evt.initEvent("click",true,true);

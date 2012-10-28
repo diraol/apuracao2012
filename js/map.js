@@ -26,7 +26,7 @@ Map = (function ($) {
           }).each(function () {
               var value;
 
-              if (values[this.id] && values[this.id][1] !== 0) {
+              if (values[this.id]) {
                   value = formatNumber(values[this.id][1]);
               }
 

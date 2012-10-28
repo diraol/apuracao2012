@@ -30,6 +30,7 @@ Apuracao = (function ($) {
     function _update(chart, data) {
         var vis = _bars().data(data, function (d) { return d.title; })
             .enter().append("svg")
+            .attr("id", function (d) { return d.title.replace(/ /g, "-"); })
             .attr("class", "bullet")
             .attr("width", width)
             .attr("height", barHeight)
