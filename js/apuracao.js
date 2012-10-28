@@ -1,12 +1,14 @@
 Apuracao = (function ($) {
     var container,
+        width,
         barWidth,
         barHeight = 21,
         barMargin = {top: 2, right: 14, bottom: 5, left: 50};
 
     function initialize(containerId) {
         container = document.getElementById(containerId);
-        barWidth = container.offsetWidth - barMargin.left - barMargin.right;
+        width = container.offsetWidth;
+        barWidth = width - barMargin.left - barMargin.right;
     }
 
     function on(type, listener, capture) {
@@ -29,7 +31,7 @@ Apuracao = (function ($) {
         var vis = _bars().data(data, function (d) { return d.title; })
             .enter().append("svg")
             .attr("class", "bullet")
-            .attr("width", barWidth)
+            .attr("width", width)
             .attr("height", barHeight)
             .append("g")
             .attr("transform", "translate(" + barMargin.left + "," + barMargin.top + ")")
