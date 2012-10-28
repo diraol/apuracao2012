@@ -1,17 +1,17 @@
 Map = (function ($) {
     var container = undefined;
 
-    function initialize(containerId, svgPath) {
+    function initialize(containerId, svgPath, callback) {
         container = document.getElementById(containerId);
 
-        _loadSvgInto(container, svgPath);
+        _loadSvgInto(container, svgPath, callback);
     };
 
     function choropleth(values, maxValue, range) {
         var scale = d3.scale.quantize()
                             .domain([0, maxValue])
                             .range(range);
-            maxValueRange = range[range.length - 1];
+        var maxValueRange = range[range.length - 1];
 
         _regions().transition()
           .style('fill-opacity', function () {
@@ -34,9 +34,13 @@ Map = (function ($) {
           });
     };
 
-    function _loadSvgInto(container, svgPath) {
+    function _loadSvgInto(container, svgPath, callback) {
         d3.xml(svgPath, 'image/svg+xml', function (xml) {
             $(container).html(xml.documentElement);
+
+            if (typeof callback === "function") {
+                callback();
+            }
         });
     };
 

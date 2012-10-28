@@ -2,17 +2,17 @@ Main = (function () {
     var mapChoroplethRanges = [5, 10, 15, 20];
 
     function initialize(dataPath) {
-        Map.initialize('map', 'imgs/brasil.svg');
-        Apuracao.initialize('apuracao');
-
         _load(dataPath);
     }
 
     function _load(path) {
         $.getJSON(path, function (data) {
+            Apuracao.initialize('apuracao');
+            Map.initialize('map', 'imgs/brasil.svg', function () {
+                $("#graficoAbas section:first").click();
+            });
+
             _setupTabs(data);
-            $("#graficoAbas section:first").click();
-            window.onhashchange();
         });
     }
 
