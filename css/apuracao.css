@@ -48,9 +48,9 @@
 #dashboard-bar .valor-2008,
 #dashboard-bar .valor-2012 {
     width: 45%;
-    font-size: 30px;
+    font-size: 35px;
     display: inline-block;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Arial Black", Gadget, sans-serif;
 }
 
 #dashboard-bar .aba-cidades .valor-2012 {
