@@ -37,17 +37,17 @@ Main = (function () {
                 scale = 30000000;
                 break;
             case "rendamedia":
-                scale = 1800*26;
+                scale = 1600;
                 break;
             case "bolsafamilia":
-                scale = 2000;
+                scale = 50;
                 break;
             case "populacaomedia":
-                scale = 40000*26;
+                scale = 57000;
                 break;
         }
 
-        Apuracao.draw(_formatDataForBulletGraph(data[selected]), scale);
+        Apuracao.draw(_formatDataForBulletGraph(data, selected), scale);
         Apuracao.on('click', function (d) {
             var partido = d.title,
                 dataPartido = data[selected][partido];
@@ -73,16 +73,33 @@ Main = (function () {
         return d3.max(values);
     }
 
-    function _formatDataForBulletGraph(data) {
+    function _formatDataForBulletGraph(data, type) {
         var barsData = []
 
-        for (var i in data) {
-            var sumValues = _sumArrays(d3.values(data[i]));
+        for (var i in data[type]) {
+            var sumValues,
+                ranges,
+                measures;
+
+            switch (type) {
+                case "prefeitos":
+                case "eleitorado":
+                    sumValues = _sumArrays(d3.values(data[type][i]));
+                    ranges = [sumValues[1]];
+                    measures = [sumValues[0]];
+                    break;
+                case "rendamedia":
+                case "bolsafamilia":
+                case "populacaomedia":
+                    ranges = [_medianFormatFor(type, data, i, 1)];
+                    measures = [0];
+                    break
+            }
 
             var row = {
                 "title": i,
-                "ranges": [sumValues[1]],
-                "measures": [sumValues[0]],
+                "ranges": [ranges],
+                "measures": [measures],
                 "markers": [0]
             }
 
@@ -100,7 +117,7 @@ Main = (function () {
                 case "rendamedia":
                 case "bolsafamilia":
                 case "populacaomedia":
-                    value2012 = _medianFormatFor(i, data, partido, 1);
+                    value2012 = _formatFor(i, data, partido, 1);
                     break;
                 default:
                     value2008 = _formatFor(i, _sumValues(data[i][partido], 0));
@@ -128,7 +145,33 @@ Main = (function () {
        }
     }
 
+    function _formatFor(type, data, partido, index) {
+        var result;
+
+        switch (type) {
+            case "prefeitos":
+                result = formatNumber(data);
+                break;
+            case "eleitorado":
+                result = formatNumber((data / 1000000).toFixed(1));
+                break;
+            case "rendamedia":
+                result = "R$ "+formatNumber(_medianFormatFor(type, data, partido, index).toFixed(0));
+                break;
+            case "bolsafamilia":
+                result = _medianFormatFor(type, data, partido, index).toFixed(1)+"%";
+                break;
+            case "populacaomedia":
+                result = formatNumber(_medianFormatFor(type, data, partido, index).toFixed(0));
+                break;
+        }
+
+        return result;
+    }
+
     function _medianFormatFor(type, data, partido, index) {
+        if (!data["prefeitos"]) { return data; }
+
         var values = data[type][partido],
             prefeitos = data["prefeitos"][partido],
             result = 0;
@@ -139,43 +182,7 @@ Main = (function () {
 
         result = result / _sumValues(prefeitos, index);
 
-        switch (type) {
-            case "rendamedia":
-                result = "R$ "+formatNumber(result.toFixed(0));
-                break;
-            case "bolsafamilia":
-                result = result.toFixed(1)+"%";
-                break;
-            case "populacaomedia":
-                result = formatNumber(result.toFixed(0));
-                break;
-        }
-
         return result;
-    }
-
-    function _formatFor(type, value) {
-        var result;
-
-        switch (type) {
-            case "prefeitos":
-                result = formatNumber(value);
-                break;
-            case "eleitorado":
-                result = (value / 1000000).toFixed(1);
-                break;
-            case "rendamedia":
-                result = "R$ "+formatNumber(value.toFixed(0));
-                break;
-            case "bolsafamilia":
-                result = formatNumber(value)+"%";
-                break;
-            case "populacaomedia":
-                result = formatNumber(value);
-                break;
-        }
-
-        return formatNumber(result);
     }
 
     function _clickOnSelectedBullet() {
