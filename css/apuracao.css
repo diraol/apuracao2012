@@ -16,6 +16,12 @@
     color: #FF5900;
 }
 
+#rendamedia,
+#bolsafamilia,
+#populacaomedia {
+    display: none !important;
+}
+
 #dashboard-bar nav {
     padding-left: 20px;
 }
