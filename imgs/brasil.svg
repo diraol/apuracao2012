@@ -200,7 +200,7 @@
      x="147958.39"
      id="legenda-BA">BA</text>
 <line
-     id="line178"
+     id="linha-RN"
      y2="45046.035"
      x2="187478.14"
      y1="51253.453"
@@ -210,7 +210,7 @@
      x="155998.53"
      id="legenda-PI">PI</text>
 <line
-     id="line184"
+     id="linha-PI"
      y2="34744.195"
      x2="155901.52"
      y1="40951.332"
@@ -220,7 +220,7 @@
      x="170270.31"
      id="legenda-CE" >CE</text>
 <line
-     id="line190"
+     id="linha-CE"
      y2="40089.469"
      x2="170173.38"
      y1="47446.035"
@@ -230,7 +230,7 @@
      x="191969.52"
      id="legenda-PB" >PB</text>
 <line
-     id="line196"
+     id="linha-PB"
      y2="57452.832"
      x2="191872.48"
      y1="60787.09"
@@ -240,7 +240,7 @@
      x="191969.52"
      id="legenda-PE" >PE</text>
 <line
-     id="line202"
+     id="linha-PE"
      y2="64922.305"
      x2="191872.48"
      y1="67107.414"
@@ -250,7 +250,7 @@
      x="187660.2"
      id="legenda-AL">AL</text>
 <line
-     id="line208"
+     id="linha-AL"
      y2="73253.641"
      x2="187563.17"
      y1="73140.445"
@@ -260,7 +260,7 @@
      x="181627.16"
      id="legenda-SE">SE</text>
 <line
-     id="line214"
+     id="linha-SE"
      y2="82446.836"
      x2="181530.14"
      y1="79460.773"
@@ -270,7 +270,7 @@
      x="167406.44"
      id="legenda-ES">ES</text>
 <line
-     id="line220"
+     id="linha-ES"
      y2="123667.7"
      x2="167309.69"
      y1="123554.51"
@@ -280,7 +280,7 @@
      x="10590.0771"
      id="legenda-AC">AC</text>
 <line
-     id="line226"
+     id="linha-AC"
      y2="87310.047"
      x2="9493.2334"
      y1="69959.891"
@@ -290,7 +290,7 @@
      x="157723.91"
      id="legenda-RJ">RJ</text>
 <line
-     id="line232"
+     id="linha-RJ"
      y2="141353.69"
      x2="157626.97"
      y1="138367.92"
@@ -300,13 +300,13 @@
      x="125249.24"
      id="legenda-SC">SC</text>
 <line
-     id="line238"
+     id="linha-SC"
      y2="163128.06"
      x2="125152.28"
      y1="163015.17"
      x1="117208.78"
      stroke-miterlimit="10" /><line
-     id="line232-4"
+     id="linha-SP"
      y2="147635.12"
      x2="132204.58"
      y1="144649.36"
