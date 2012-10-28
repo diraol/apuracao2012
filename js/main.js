@@ -36,6 +36,15 @@ Main = (function () {
             case "eleitorado":
                 scale = 30000000;
                 break;
+            case "rendamedia":
+                scale = 1800*26;
+                break;
+            case "bolsafamilia":
+                scale = 2000;
+                break;
+            case "populacaomedia":
+                scale = 40000*26;
+                break;
         }
 
         Apuracao.draw(_formatDataForBulletGraph(data[selected]), scale);
@@ -85,8 +94,22 @@ Main = (function () {
 
     function _updateDashboard(data, partido) {
         for (var i in data) {
-            $('#dashboard-bar #'+i+' .valor-2008').text(_formatFor(i, _sumValues(data[i][partido], 0)));
-            $('#dashboard-bar #'+i+' .valor-2012').text(_formatFor(i, _sumValues(data[i][partido], 1)));
+            var value2008,
+                value2012;
+            switch (i) {
+                case "rendamedia":
+                case "bolsafamilia":
+                case "populacaomedia":
+                    value2012 = _medianFormatFor(i, data, partido, 1);
+                    break;
+                default:
+                    value2008 = _formatFor(i, _sumValues(data[i][partido], 0));
+                    value2012 = _formatFor(i, _sumValues(data[i][partido], 1));
+                    break;
+            }
+
+            $('#dashboard-bar #'+i+' .valor-2008').text(value2008);
+            $('#dashboard-bar #'+i+' .valor-2012').text(value2012);
         }
     }
 
@@ -97,9 +120,38 @@ Main = (function () {
             $('#dashboard-bar #prefeitos .valor-2012').text(_formatFor("prefeitos", data["total"].prefeitos[1]));
             $('#dashboard-bar #eleitorado .valor-2008').text(_formatFor("eleitorado", data["total"].eleitorado[0]));
             $('#dashboard-bar #eleitorado .valor-2012').text(_formatFor("eleitorado", data["total"].eleitorado[1]));
+            $('#dashboard-bar #rendamedia .valor-2012').text(_formatFor("rendamedia", data["total"].rendamedia[1]));
+            $('#dashboard-bar #bolsafamilia .valor-2012').text(_formatFor("bolsafamilia", data["total"].bolsafamilia[1]));
+            $('#dashboard-bar #populacaomedia .valor-2012').text(_formatFor("populacaomedia", data["total"].populacaomedia[1]));
        } else {
            _clickOnSelectedBullet();
        }
+    }
+
+    function _medianFormatFor(type, data, partido, index) {
+        var values = data[type][partido],
+            prefeitos = data["prefeitos"][partido],
+            result = 0;
+
+        for (var uf in values) {
+            result += values[uf][index] * prefeitos[uf][index];
+        }
+
+        result = result / _sumValues(prefeitos, index);
+
+        switch (type) {
+            case "rendamedia":
+                result = "R$ "+formatNumber(result.toFixed(0));
+                break;
+            case "bolsafamilia":
+                result = result.toFixed(1)+"%";
+                break;
+            case "populacaomedia":
+                result = formatNumber(result.toFixed(0));
+                break;
+        }
+
+        return result;
     }
 
     function _formatFor(type, value) {
@@ -107,10 +159,19 @@ Main = (function () {
 
         switch (type) {
             case "prefeitos":
-                result = value;
+                result = formatNumber(value);
                 break;
             case "eleitorado":
                 result = (value / 1000000).toFixed(1);
+                break;
+            case "rendamedia":
+                result = "R$ "+formatNumber(value.toFixed(0));
+                break;
+            case "bolsafamilia":
+                result = formatNumber(value)+"%";
+                break;
+            case "populacaomedia":
+                result = formatNumber(value);
                 break;
         }
 

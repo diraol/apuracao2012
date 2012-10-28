@@ -26,6 +26,12 @@
     width: 25%;
 }
 
+#dashboard-bar section.aba-cidades {
+    display: inline-block;
+    font-weight: bold;
+    width: 16%;
+}
+
 #dashboard-bar section p {
     margin-bottom: 2px;
     font-size: 10px;
@@ -41,6 +47,10 @@
     font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
+#dashboard-bar .aba-cidades .valor-2012 {
+    width: 100%;
+    text-align: center;
+}
 #dashboard-bar .valor-2008 {
     color: #2F7DA1;
     border-right: 1px solid grey;
