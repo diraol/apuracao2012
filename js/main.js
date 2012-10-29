@@ -63,7 +63,10 @@ Main = (function () {
             $("svg.bullet.selected").attr("class", "bullet");
             $(partidoId).attr("class", "bullet selected");
 
-            Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges);
+            Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges,
+                           function (values) {
+                               return _formatForMap(selected, values);
+                           });
             $('#nome-partido').text(partido);
             _updateDashboard(data, partido)
         }
@@ -74,6 +77,32 @@ Main = (function () {
         });
 
         _updateMap(data);
+    }
+
+    function _formatForMap(type, values) {
+        if (values === undefined || values[1] === 0) {
+            return "";
+        }
+
+        var result = values[1];
+
+        switch (type) {
+            case "prefeitos":
+            case "eleitorado":
+                result = formatNumber(result);
+                break;
+            case "rendamedia":
+                result = "R$ "+formatNumber(result.toFixed(0));
+                break;
+            case "bolsafamilia":
+                result = result.toFixed(1)+"%";
+                break;
+            case "populacaomedia":
+                result = formatNumber(result.toFixed(0));
+                break;
+        }
+
+        return result;
     }
 
     function _maxValue(data, index) {

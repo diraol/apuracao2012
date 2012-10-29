@@ -7,7 +7,7 @@ Map = (function ($) {
         _loadSvgInto(container, svgPath, callback);
     };
 
-    function choropleth(values, maxValue, range) {
+    function choropleth(values, maxValue, range, format) {
         var scale = d3.scale.quantize()
                             .domain([0, maxValue])
                             .range(range);
@@ -24,10 +24,13 @@ Map = (function ($) {
 
               return result;
           }).each(function () {
-              var value;
+              var value = format(values[this.id]),
+                  linha = d3.select(container).select("#linha-"+this.id);
 
-              if (values[this.id]) {
-                  value = formatNumber(values[this.id][1]);
+              if (value === "") {
+                  linha.style("display", "none");
+              } else {
+                  linha.style("display", "");
               }
 
               d3.select(container).select("#legenda-"+this.id).text(value);

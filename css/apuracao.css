@@ -16,10 +16,8 @@
     color: #FF5900;
 }
 
-#rendamedia,
-#bolsafamilia,
-#populacaomedia {
-    display: none !important;
+.aba-cidades .valor-2012 {
+    padding-left: 0px;
 }
 
 #dashboard-bar nav {
@@ -29,13 +27,25 @@
 #dashboard-bar section {
     display: inline-block;
     font-weight: bold;
-    width: 25%;
+    width: 23%;
 }
 
 #dashboard-bar section.aba-cidades {
     display: inline-block;
     font-weight: bold;
-    width: 16%;
+}
+
+#dashboard-bar #rendamedia,
+#dashboard-bar #populacaomedia {
+    width: 15%;
+}
+
+#dashboard-bar #bolsafamilia {
+    width: 22%;
+}
+
+#dashboard-bar .aba-cidades .valor-2012 {
+    padding-left: 0px;
 }
 
 #dashboard-bar section p {
