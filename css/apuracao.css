@@ -83,14 +83,17 @@
 .bullet,
 #dashboard-bar section {
     opacity: 0.4;
+    cursor: pointer;
 }
 
-#dashboard-bar .selected,
 #dashboard-bar section:hover,
-.bullet.selected,
 .bullet:hover {
+    opacity: 0.7;
+}
+
+#dashboard-bar section.selected,
+.bullet.selected {
     opacity: 1;
-    cursor: pointer;
 }
 
 .legendas ul {

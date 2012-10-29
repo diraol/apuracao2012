@@ -7,31 +7,80 @@ Main = (function () {
 
     function _load(path) {
         $.getJSON(path, function (data) {
-            Apuracao.initialize('apuracao');
+            Apuracao.initialize('apuracao', data);
+
+            _setupCallbacks(data);
+            _setupRoutes(data);
+
             Map.initialize('map', 'imgs/brasil.svg', function () {
                 $("#graficoAbas section:first").click();
+                window.onhashchange();
             });
-
-            _setupTabs(data);
         });
     }
 
-    function _setupTabs(data) {
+    function _setupCallbacks(data) {
+        Apuracao.on('click', function () {
+            var d = d3.select(this).datum(),
+                aba = $("#graficoAbas .selected")[0].id;
+
+            if ($(this).attr("class") === "bullet selected") {
+                $("svg.bullet.selected").attr("class", "bullet");
+            } else {
+                $("svg.bullet.selected").attr("class", "bullet");
+                $(this).attr("class", "bullet selected");
+            }
+
+            _updateUrl();
+        });
+
        $("#graficoAbas section").click(function() {
            esconderAlerta();
            $("#graficoAbas .selected").removeClass("selected");
            $(this).addClass("selected");
-           _update(data, this.id);
-           window.onhashchange();
+
+           _updateUrl();
        });
     }
 
-    function _update(data, selected) {
-        var maxValue = _maxValue(data[selected]),
-            scale;
+    function _setupRoutes(data) {
+        Router.route(/(.+)\/(.+)/, function (partido, aba) {
+            _update(data, partido, aba);
+        });
+        Router.route(/(.+)/, function (partido) {
+            var aba = $("#graficoAbas .selected")[0].id;
+            _update(data, partido, aba);
+        });
+    }
+
+    function _updateUrl() {
+        var partido = d3.select("svg.bullet.selected"),
+            aba = d3.select("#graficoAbas .selected").attr("id");
+
+        if (partido.empty()) {
+            partido = "Brasil";
+        } else {
+            partido = partido.datum().title;
+        }
+
+        Router.redirect(partido, aba);
+    }
+
+    function _update(data, partido, aba) {
+        var scale = _scale(aba);
+
+        if (data[aba][partido] !== undefined) {
+            _updateGraphs(data, aba, partido);
+        }
+        Apuracao.draw(_formatDataForBulletGraph(data, aba), scale);
+        _updateMap(data);
+    }
+
+    function _scale(type) {
+        var scale;
 
         // TODO: Tire esses magic numbers. Calcule a partir dos dados.
-        switch (selected) {
+        switch (type) {
             case "prefeitos":
                 scale = 1200;
                 break;
@@ -49,34 +98,23 @@ Main = (function () {
                 break;
         }
 
-        window.onhashchange = function () {
-            var partidoId = window.location.hash.replace(/!/, ""),
-                partido = partidoId.substr(1).replace(/-/g, " "),
-                dataPartido = data[selected][partido];
+        return scale;
+    }
 
-            if (partidoId === "") { return; }
-            if (typeof _gaq !== 'undefined') {
-                _gaq.push(['_trackPageview', window.location.pathname + window.location.hash]);
-                _gaq.push(['estadaoDados._trackPageview', window.location.pathname + window.location.hash]);
-            }
+    function _updateGraphs(data, selected, partido) {
+        var dataPartido = data[selected][partido];
 
-            $("svg.bullet.selected").attr("class", "bullet");
-            $(partidoId).attr("class", "bullet selected");
-
-            Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges,
-                           function (values) {
-                               return _formatForMap(selected, values);
-                           });
-            $('#nome-partido').text(partido);
-            _updateDashboard(data, partido)
+        if (typeof _gaq !== 'undefined') {
+            _gaq.push(['_trackPageview', window.location.pathname + window.location.hash]);
+            _gaq.push(['estadaoDados._trackPageview', window.location.pathname + window.location.hash]);
         }
 
-        Apuracao.draw(_formatDataForBulletGraph(data, selected), scale);
-        Apuracao.on('click', function (d) {
-           window.location.hash = "!" + d.title.replace(/ /g, "-");
-        });
-
-        _updateMap(data);
+        Map.choropleth(dataPartido, _maxValue(dataPartido, 1), mapChoroplethRanges,
+                function (values) {
+                    return _formatForMap(selected, values);
+                });
+        $('#nome-partido').text(partido);
+        _updateDashboard(data, partido)
     }
 
     function _formatForMap(type, values) {
@@ -182,8 +220,6 @@ Main = (function () {
             $('#dashboard-bar #rendamedia .valor-2012').text(_formatFor("rendamedia", data["total"].rendamedia[1]));
             $('#dashboard-bar #bolsafamilia .valor-2012').text(_formatFor("bolsafamilia", data["total"].bolsafamilia[1]));
             $('#dashboard-bar #populacaomedia .valor-2012').text(_formatFor("populacaomedia", data["total"].populacaomedia[1]));
-       } else {
-           _clickOn(document.getElementsByClassName("bullet selected")[0]);
        }
     }
 

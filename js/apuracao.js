@@ -5,14 +5,16 @@ Apuracao = (function ($) {
         barHeight = 21,
         barMargin = {top: 2, right: 14, bottom: 5, left: 50};
 
-    function initialize(containerId) {
+    function initialize(containerId, data) {
         container = document.getElementById(containerId);
         width = container.offsetWidth;
         barWidth = width - barMargin.left - barMargin.right;
+
+        draw(data);
     }
 
     function on(type, listener, capture) {
-        _bars().on(type, listener, capture);
+        $("svg.bullet").live(type, listener, capture);
 
         return this;
     }
