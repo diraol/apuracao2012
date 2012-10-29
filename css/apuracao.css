@@ -41,7 +41,7 @@
 }
 
 #dashboard-bar #bolsafamilia {
-    width: 22%;
+    width: 21%;
 }
 
 #dashboard-bar .aba-cidades .valor-2012 {
@@ -58,7 +58,7 @@
 #dashboard-bar .valor-2008,
 #dashboard-bar .valor-2012 {
     width: 45%;
-    font-size: 35px;
+    font-size: 28px;
     display: inline-block;
     font-family: "Arial Black", Gadget, sans-serif;
 }
