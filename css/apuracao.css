@@ -108,8 +108,8 @@
 }
 
 .legendas img {
-    width: 20px;
     height: 10px;
+    padding-left: 20px;
 }
 
 .cor-2008 {
