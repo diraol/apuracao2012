@@ -44,6 +44,9 @@ Main = (function () {
     }
 
     function _setupRoutes(data) {
+        Router.route(/!(.+)/, function (uri) {
+            Router.redirect(uri);
+        });
         Router.route(/(.+)\/(.+)/, function (partido, aba) {
             _update(data, partido, aba);
         });
