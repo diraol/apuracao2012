@@ -1,5 +1,22 @@
 Main = (function () {
-    var mapChoroplethRanges = [5, 10, 15, 20];
+    var mapChoroplethRanges = [5, 10, 15, 20],
+        elementos = {
+            "prefeitos": {
+                scale: 1200
+            },
+            "eleitorado": {
+                scale: 30000000
+            },
+            "rendamedia": {
+                scale: 1600
+            },
+            "bolsafamilia": {
+                scale: 50
+            },
+            "populacaomedia": {
+                scale: 57000
+            }
+        };
 
     function initialize(dataPath) {
         _load(dataPath);
@@ -9,10 +26,10 @@ Main = (function () {
         $.getJSON(path, function (data) {
             Apuracao.initialize('apuracao', data);
 
-            _setupCallbacks(data);
             _setupRoutes(data);
 
             Map.initialize('map', 'imgs/brasil.svg', function () {
+                _setupCallbacks(data);
                 $("#graficoAbas section:first").click();
                 window.onhashchange();
             });
@@ -70,38 +87,13 @@ Main = (function () {
     }
 
     function _update(data, partido, aba) {
-        var scale = _scale(aba);
+        var scale = elementos[aba].scale;
 
         if (data[aba][partido] !== undefined) {
             _updateGraphs(data, aba, partido);
         }
         Apuracao.draw(_formatDataForBulletGraph(data, aba), scale);
         _updateMap(data);
-    }
-
-    function _scale(type) {
-        var scale;
-
-        // TODO: Tire esses magic numbers. Calcule a partir dos dados.
-        switch (type) {
-            case "prefeitos":
-                scale = 1200;
-                break;
-            case "eleitorado":
-                scale = 30000000;
-                break;
-            case "rendamedia":
-                scale = 1600;
-                break;
-            case "bolsafamilia":
-                scale = 50;
-                break;
-            case "populacaomedia":
-                scale = 57000;
-                break;
-        }
-
-        return scale;
     }
 
     function _updateGraphs(data, selected, partido) {
@@ -130,17 +122,22 @@ Main = (function () {
         switch (type) {
             case "prefeitos":
             case "eleitorado":
+                //format_number genérico
                 result = formatNumber(result);
                 break;
             case "rendamedia":
+                //adiciona antes R$ e trunca para inteiro e usa o formatnumber
                 result = "R$ "+formatNumber(result.toFixed(0));
                 break;
             case "bolsafamilia":
+                //uma casa decimal com símbolo de % depois
                 result = result.toFixed(1)+"%";
                 break;
             case "populacaomedia":
+                //formatNumber e trunca para inteiro
                 result = formatNumber(result.toFixed(0));
                 break;
+
         }
 
         return result;
